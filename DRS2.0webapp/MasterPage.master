@@ -1,0 +1,20 @@
+<%@ Master Language="VB" Inherits="DRS2._0webapp.MasterPage" Codebehind="MasterPage.master.vb" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>DRS 2.0 - the web solution!</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div title="DRS 2.0 - the master radio recording web">
+        <a href="Filter.aspx">Filter</a> &nbsp;<a href="scheduled.aspx">Schedule</a>&nbsp;<a href="RecordLog.aspx">RecordLog</a>
+        <a href="DisplayOE1.aspx">OE1</a>&nbsp;<a href="Editeur.aspx">Editeur</a><br />
+        ------------------------------------------------------------------------------------------<br />
+        <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">
+        </asp:contentplaceholder>
+    </div>
+    </form>
+</body>
+</html>

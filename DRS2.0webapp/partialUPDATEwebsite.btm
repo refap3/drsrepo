@@ -1,0 +1,18 @@
+set xml=Y
+set xxml=/[!*.config]
+inkey /w10 Exclude .CONFIG files on deploy (Y/N)?  %%xml
+
+iff "%xml" == "N" then
+unset xxml
+endiff
+
+rem pskill \\wmrecorda schedwatcher
+rem cannot be started below!! will run as system and has NO access to NW shares !
+copy %xxml *.* \\wmrecorda\c$\Inetpub\wwwroot\drs2.0 /u
+copy %xxml App_Code\*.* \\wmrecorda\c$\Inetpub\wwwroot\drs2.0\App_Code /u
+copy %xxml bin\*.* \\wmrecorda\c$\Inetpub\wwwroot\drs2.0\bin /u
+copy %xxml ..\DRS2.0\bin\Debug\*.* \\wmrecorda\c$\4dos\ /u
+copy %xxml ..\schedWatcher\bin\Debug\*.* \\wmrecorda\c$\4dos\ /u
+rem psexec \\wmrecorda -i -d c:\4dos\schedWatcher.exe
+inkey %%x
+lo

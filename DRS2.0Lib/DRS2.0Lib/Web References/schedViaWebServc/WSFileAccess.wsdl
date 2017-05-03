@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SaveScheduleFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="schedFileContent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveScheduleFileResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetrieveScheduleFile">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetrieveScheduleFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveScheduleFileResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteScheduleFile">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteScheduleFileResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="pathToDRS20Database">
+        <s:complexType />
+      </s:element>
+      <s:element name="pathToDRS20DatabaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pathToDRS20DatabaseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="pathToAppData">
+        <s:complexType />
+      </s:element>
+      <s:element name="pathToAppDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pathToAppDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SaveScheduleFileSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveScheduleFile" />
+  </wsdl:message>
+  <wsdl:message name="SaveScheduleFileSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveScheduleFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveScheduleFileSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveScheduleFile" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveScheduleFileSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveScheduleFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteScheduleFileSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteScheduleFile" />
+  </wsdl:message>
+  <wsdl:message name="DeleteScheduleFileSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteScheduleFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="pathToDRS20DatabaseSoapIn">
+    <wsdl:part name="parameters" element="tns:pathToDRS20Database" />
+  </wsdl:message>
+  <wsdl:message name="pathToDRS20DatabaseSoapOut">
+    <wsdl:part name="parameters" element="tns:pathToDRS20DatabaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="pathToAppDataSoapIn">
+    <wsdl:part name="parameters" element="tns:pathToAppData" />
+  </wsdl:message>
+  <wsdl:message name="pathToAppDataSoapOut">
+    <wsdl:part name="parameters" element="tns:pathToAppDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSFileAccessSoap">
+    <wsdl:operation name="SaveScheduleFile">
+      <wsdl:input message="tns:SaveScheduleFileSoapIn" />
+      <wsdl:output message="tns:SaveScheduleFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveScheduleFile">
+      <wsdl:input message="tns:RetrieveScheduleFileSoapIn" />
+      <wsdl:output message="tns:RetrieveScheduleFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteScheduleFile">
+      <wsdl:input message="tns:DeleteScheduleFileSoapIn" />
+      <wsdl:output message="tns:DeleteScheduleFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pathToDRS20Database">
+      <wsdl:input message="tns:pathToDRS20DatabaseSoapIn" />
+      <wsdl:output message="tns:pathToDRS20DatabaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="pathToAppData">
+      <wsdl:input message="tns:pathToAppDataSoapIn" />
+      <wsdl:output message="tns:pathToAppDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSFileAccessSoap" type="tns:WSFileAccessSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveScheduleFile">
+      <soap:operation soapAction="http://tempuri.org/SaveScheduleFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveScheduleFile">
+      <soap:operation soapAction="http://tempuri.org/RetrieveScheduleFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteScheduleFile">
+      <soap:operation soapAction="http://tempuri.org/DeleteScheduleFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pathToDRS20Database">
+      <soap:operation soapAction="http://tempuri.org/pathToDRS20Database" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pathToAppData">
+      <soap:operation soapAction="http://tempuri.org/pathToAppData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSFileAccessSoap12" type="tns:WSFileAccessSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SaveScheduleFile">
+      <soap12:operation soapAction="http://tempuri.org/SaveScheduleFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveScheduleFile">
+      <soap12:operation soapAction="http://tempuri.org/RetrieveScheduleFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteScheduleFile">
+      <soap12:operation soapAction="http://tempuri.org/DeleteScheduleFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pathToDRS20Database">
+      <soap12:operation soapAction="http://tempuri.org/pathToDRS20Database" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pathToAppData">
+      <soap12:operation soapAction="http://tempuri.org/pathToAppData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSFileAccess">
+    <wsdl:port name="WSFileAccessSoap" binding="tns:WSFileAccessSoap">
+      <soap:address location="http://localhost/DRS2.0/WSFileAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSFileAccessSoap12" binding="tns:WSFileAccessSoap12">
+      <soap12:address location="http://localhost/DRS2.0/WSFileAccess.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

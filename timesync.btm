@@ -1,0 +1,17 @@
+rem this bloody scripts syncs time on XP devices
+rem 
+rem then sets it forward a couple of secs ... see below 
+net stop w32time
+net time /querysntp
+w32tm /unregister
+w32tm /unregister
+w32tm /register
+net start w32time
+w32tm /resync
+w32tm /resync
+w32tm /resync
+rem now go BACK 30 seconds !!
+time %@maketime[%@eval[%@time[%_time]+30]]
+
+
+
