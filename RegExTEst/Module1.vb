@@ -23,7 +23,7 @@ Module Module1
             Console.WriteLine("I: " & oe.MoreInfo)
             'Console.WriteLine("L: " & oe.MehrLink) ' Link is dead
 
-            If safetyExit > 10 Then Exit For ' COMMENT this line for full coverage 
+            'If safetyExit > 10 Then Exit For ' COMMENT this line for full coverage 
         Next
         Console.ReadLine()
 

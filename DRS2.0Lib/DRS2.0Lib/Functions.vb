@@ -1,9 +1,9 @@
 Imports System.Windows.Forms
-Imports System.Web.ui.webcontrols
+Imports System.Web.UI.WebControls
 Imports System.Web.HttpRequest
 Imports System.Text.RegularExpressions
-
-
+Imports System.Net
+Imports System.Text
 
 Public Module Functions
 
@@ -50,83 +50,53 @@ Public Module Functions
         '2. grab the next 9 lines or so 
         '3. figure out which line is which 
         '4. remove HTML residues AFTER regexping 
+        ' ALL dead nittl in 2017 
+        ' lines look like this now 
+
 
         'Dim mtch As MatchCollection = New Regex(((((("<h3>(<a class=""blk"".*){0,1}<span>(?<dumm1>.*)</span>(?<dumm2>.*?)(</a>){0,1}</h3>") & "(.*\n){2}" & "(?<dumm3>.*)\n") & "(?<dumm4>.*)\n" & "(?<dumm5>.*)\n") & "(?<dumm6>.*)\n" & "(?<dumm7>.*)\n") & "(?<dumm8>.*)\n" & "(?<dumm9>.*)\n"), RegexOptions.IgnoreCase).Matches(prgText)
-        Dim mtch As MatchCollection = New Regex(((((("<h3>(<a class=""blk"".*){0,1}<span>(?<dumm1>.*)</span>(?<dumm2>.*?)(</a>){0,1}</h3>") & "(.*\n){2}" & "(?<dumm3>.*)\n") & "(?<dumm4>.*).*\n" & "(?<dumm5>.*)\n") & "(?<dumm6>.*)\n" & "(?<dumm7>.*)\n") & "(?<dumm8>.*)\n" & "(?<dumm9>.*)\n"), RegexOptions.IgnoreCase).Matches(prgText)
-        Dim dumm1 As String = ""
-        Dim dumm2 As String = ""
-        Dim dumm3 As String = ""
-        Dim dumm4 As String = ""
-        Dim dumm5 As String = ""
-        Dim dumm6 As String = ""
-        Dim dumm7 As String = ""
-        Dim dumm8 As String = ""
-        Dim dumm9 As String = ""
+        'Dim mtch As MatchCollection = New Regex(((((("<h3>(<a class=""blk"".*){0,1}<span>(?<dumm1>.*)</span>(?<dumm2>.*?)(</a>){0,1}</h3>") & "(.*\n){2}" & "(?<dumm3>.*)\n") & "(?<dumm4>.*).*\n" & "(?<dumm5>.*)\n") & "(?<dumm6>.*)\n" & "(?<dumm7>.*)\n") & "(?<dumm8>.*)\n" & "(?<dumm9>.*)\n"), RegexOptions.IgnoreCase).Matches(prgText)
+
+        '             <h3 data-detail-url="/broadcast/473914"><span class="programTime"> 5:00</span><a href="/programm/20170504/473914">Das Wichtigste zu Tagesbeginn</a></h3>
+        Dim mtch As MatchCollection = New Regex((".*data-detail-url.*<span class=""programTime"">(?<time>.*)</span><a href=""(?<link>.*)"">(?<title>.*)</a></h3>.*\n"), RegexOptions.IgnoreCase).Matches(prgText)
+        Dim ntim As String = ""
+        Dim ntit As String = ""
+        Dim nlink As String = ""
+
 
         Dim ms As Match
         For Each ms In mtch
-            dumm1 = Trim(ms.Result("${dumm1}"))
-            dumm2 = Trim(ms.Result("${dumm2}"))
-            dumm3 = Trim(ms.Result("${dumm3}"))
-            dumm4 = Trim(ms.Result("${dumm4}"))
-            dumm5 = Trim(ms.Result("${dumm5}"))
-            dumm6 = Trim(ms.Result("${dumm6}"))
-            dumm7 = Trim(ms.Result("${dumm7}"))
-            dumm8 = Trim(ms.Result("${dumm8}"))
-            dumm9 = Trim(ms.Result("${dumm9}"))
-            timFound = dumm1
-            progFound = removeControlcharsAndTagsAndSpaces(dumm2)
+            ntim = Trim(ms.Groups("time").Value)
+            ntit = Trim(ms.Groups("title").Value)
+            nlink = Trim(ms.Groups("link").Value)
+            Debug.WriteLine(ntim & "##" & ntit & "##" & nlink)
+
+            timFound = ntim
+            progFound = removeControlcharsAndTagsAndSpaces(ntit)
             typeFound = "" ' gibts nimma !
-            ' replace some left over HTML stuff 
-            'moreInfFound = removeControlchars(dumm4).Replace("</b><br />", "").Replace("<p class=""abstract"">", "").Replace("</p>", "").Replace("<br/>", "").Replace("""", "").Replace("'", "")
-            ' there are two styles 1. only dummy 4 contains all info 2: dummy = <p class=""abstract""> and dummy6 & 7 contain more info ...
+            moreInfFound = "TBD"
 
-            ' 		dumm4	"<p class="abstract "> "	String
-
-            If Left(dumm4, 21) = "<p class=""abstract "">" Then
-                dumm4 = Right(dumm4, dumm4.Length - 21)
-                If Left(Trim(dumm5), 1) = "<" Then dumm5 = "" ' skip if tag 
-                If Left(Trim(dumm6), 1) = "<" Then dumm6 = "" ' skip if tag 
-                If Left(Trim(dumm7), 1) = "<" Then dumm7 = "" ' skip if tag 
-                If Left(Trim(dumm8), 1) = "<" Then dumm8 = "" ' skip if tag 
-                If Left(Trim(dumm9), 1) = "<" Then dumm9 = "" ' skip if tag 
-
-                dumm4 = Trim(dumm4 & " " & dumm5 & " " & dumm6 & " " & dumm7 & " " & dumm8 & " " & dumm9)
-
-            Else
-                Dim dum4mtch As Match = New Regex("(.*class=""abstractlink"">)(?<dumm4>.*)(</a></p>).*", RegexOptions.IgnoreCase).Match(dumm4)
-                If dum4mtch.Success Then dumm4 = Trim(dum4mtch.Result("${dumm4}"))
-            End If
-
-            moreInfFound = Trim(removeControlcharsAndTagsAndSpaces(dumm4))
-
-            ' remove Download Marker " *"
-            If (progFound.Substring((progFound.Length - 2), 2) = " *") Then
-                progFound = progFound.Substring(0, (progFound.Length - 2))
-            End If
-            ' Alternate spelling .... 
-            If (progFound.Substring((progFound.Length - 7), 7) = "&nbsp;*") Then
-                progFound = progFound.Substring(0, (progFound.Length - 7))
-            End If
 
             'MEHR Link logic ...
-            mehrLink = "" ' LOGI HAS BEEN CANCELLED (29.1.14)
-            'Dim mehrLprefix As Object = "<p class=""weiter""><a href=""/programm/"
-            'If dumm6.Contains((mehrLprefix)) Then
-            '    mehrLink = (dumm6 & dumm7 & dumm8)
-            'End If
-            'If dumm7.Contains((mehrLprefix)) Then
-            '    mehrLink = (dumm7 & dumm8)
-            'End If
-            'If dumm8.Contains((mehrLprefix)) Then
-            '    mehrLink = dumm8
-            'End If
-            'mehrLink = mehrLink.Replace((mehrLprefix), "")
-            'If mehrLink.Contains("""") Then
-            '    mehrLink = mehrLink.Substring(0, mehrLink.IndexOf(""""))
-            '    mehrLink = ("http://oe1.orf.at/programm/" & mehrLink)
-            'End If
-            dumm1 = dumm1 'BREAKPOINT HERE !!
+            mehrLink = nlink
+            mehrLink = ("http://oe1.orf.at" & mehrLink)
+
+
+            Dim objWebClient As New WebClient()
+            Dim objUTFenc As New UTF8Encoding
+            Dim fullMoreInfo As String
+
+
+            fullMoreInfo = objUTFenc.GetString(objWebClient.DownloadData(mehrLink))
+            ' we look for this
+            '<p class="teaserText">"Hören und Zuhören". Persönliche Affinitäten zu Stimmen, zu Klang und Musik, auch über die Stille, über Hören und Gehört-Werden, über Zuhören als erste Kontaktaufnahme mit dem Du von Daniel Landau, Lehrer und Dirigent. - Gestaltung: Alexandra Mantler</p>
+            Dim teasermtch As MatchCollection = New Regex((".*<p class=""teaserText"">(?<teaser>.*)</p>.*\n"), RegexOptions.IgnoreCase).Matches(fullMoreInfo)
+            moreInfFound = ""
+            For Each ms2 As Match In teasermtch
+                moreInfFound = Trim(ms2.Groups("teaser").Value)
+            Next
+
+            moreInfFound = Trim(removeControlcharsAndTagsAndSpaces(moreInfFound))
             If timFound < lastTimefound Then day = day.AddDays(1)
             lastTimefound = timFound
 
