@@ -1,3 +1,29 @@
+Moved the focc to GITHUB after 2017 web redesign 3.5.2017
+---------------------------------------------------------
+
+heres what changed: 
+
+[K:\My Projects here\DRS2.0]gpl
+Updating 59ccc43..15c5812
+Fast-forward
+ DRS2.0/DRS2.0.vbproj                   |    1 +
+ DRS2.0Lib/DRS2.0Lib/Functions.vb       |  104 +-
+ RegExTEst/Module1.vb                   |    2 +-
+ RegExTEst/oe1_ORF_at - before 2017.htm | 2336 +++++++++++++++++
+ RegExTEst/oe1_ORF_at.htm               | 4369 +++++++++++++++-----------------
+ RegExTEst/oe1_ORF_at_detail.htm        |  374 +++
+ 6 files changed, 4805 insertions(+), 2381 deletions(-)
+ create mode 100644 RegExTEst/oe1_ORF_at - before 2017.htm
+ create mode 100644 RegExTEst/oe1_ORF_at_detail.htm
+ 
+ essentially only Functions.vb -- so it should do to replace this one file !
+ ------------------------
+ 
+ 
+ 
+
+
+
 BLOODY blues and troubles collected here 
 ---------------------------------------------
 
