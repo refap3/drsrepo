@@ -1,13 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BE3FC446-5A06-40B0-BF23-9933FA64414C}"
 	ProjectSection(SolutionItems) = preProject
 		aaaREADME.txt = aaaREADME.txt
 		aspnetsec.bat = aspnetsec.bat
 		Exclude.txt = Exclude.txt
+		___AAAnoteTHIS!!!!!drsLIBPATCH\updateDLL.bat = ___AAAnoteTHIS!!!!!drsLIBPATCH\updateDLL.bat
 	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DRS2.0", "DRS2.0\DRS2.0.vbproj", "{1A7D9A11-E9EA-4B8B-A4F6-37C3E390CE1C}"
@@ -21,36 +22,6 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DRS2.0webapp", "DRS2.0webapp\DRS2.0webapp.vbproj", "{E4268420-1857-4FCC-B24A-BC7BC772EC69}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://sb:8084/tfs/defaultcollection
-		SccProjectUniqueName0 = DRS2.0\\DRS2.0.vbproj
-		SccProjectName0 = DRS2.0
-		SccAuxPath0 = http://sb:8084/tfs/defaultcollection
-		SccLocalPath0 = DRS2.0
-		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName1 = DRS2.0Lib\\DRS2.0Lib\\DRS2.0Lib.vbproj
-		SccProjectName1 = DRS2.0Lib/DRS2.0Lib
-		SccAuxPath1 = http://sb:8084/tfs/defaultcollection
-		SccLocalPath1 = DRS2.0Lib\\DRS2.0Lib
-		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName2 = RegExTEst\\RegExTEst.vbproj
-		SccProjectName2 = RegExTEst
-		SccAuxPath2 = http://sb:8084/tfs/defaultcollection
-		SccLocalPath2 = RegExTEst
-		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName3 = schedWatcher\\schedWatcher.vbproj
-		SccProjectName3 = schedWatcher
-		SccAuxPath3 = http://sb:8084/tfs/defaultcollection
-		SccLocalPath3 = schedWatcher
-		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccProjectUniqueName4 = DRS2.0webapp\\DRS2.0webapp.vbproj
-		SccProjectName4 = DRS2.0webapp
-		SccAuxPath4 = http://sb:8084/tfs/defaultcollection
-		SccLocalPath4 = DRS2.0webapp
-		SccProvider4 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
 		Debug|Any CPU = Debug|Any CPU
