@@ -292,21 +292,7 @@ Public Module Functions
         For Each oe1Prog As OE1Sendung In mySelectedOes1s
             Dim rw As DRSDataSet.DRS20Row = ds.DRS20.NewDRS20Row
 
-            ' for the selected rows we will add then mehrLink SaveRecordingInfoTODRS20DATABASE here ... 
-
-            Dim objWebClient As New WebClient()
-            Dim objUTFenc As New UTF8Encoding
-            Dim fullMoreInfo As String
-
-            fullMoreInfo = objUTFenc.GetString(objWebClient.DownloadData(oe1Prog.MehrLink))
-            'we look for this
-            '<p Class="teaserText">"Hören und Zuhören". Persönliche Affinitäten zu Stimmen, zu Klang und Musik, auch über die Stille, über Hören und Gehört-Werden, über Zuhören als erste Kontaktaufnahme mit dem Du von Daniel Landau, Lehrer und Dirigent. - Gestaltung: Alexandra Mantler</p>
-            Dim teasermtch As MatchCollection = New Regex((".*<p class=""teaserText"">(?<teaser>.*)</p>.*\n"), RegexOptions.IgnoreCase).Matches(fullMoreInfo)
-            fullMoreInfo = ""
-            For Each ms2 As Match In teasermtch
-                fullMoreInfo = removeControlcharsAndTagsAndSpaces(Trim(ms2.Groups("teaser").Value))
-            Next
-
+            Dim fullMoreInfo As String = FindMoreInfoFromWeb(oe1Prog)
             rw.MP3OutFileName = trimToThisLength(oe1Prog.Program & fullMoreInfo, ds.DRS20.MP3OutFileNameColumn.MaxLength)
             rw.RecordingLegth = oe1Prog.Duration * 60
             rw.RecordingTime = oe1Prog.StartTime
@@ -334,6 +320,26 @@ Public Module Functions
         Loop Until updatesDone
         Return errRows
     End Function
+
+    Private Function FindMoreInfoFromWeb(oe1Prog As OE1Sendung) As String
+        ' for the selected rows we will add then mehrLink SaveRecordingInfoTODRS20DATABASE here ... 
+
+        Dim objWebClient As New WebClient()
+        Dim objUTFenc As New UTF8Encoding
+        Dim fullMoreInfo As String
+
+        fullMoreInfo = objUTFenc.GetString(objWebClient.DownloadData(oe1Prog.MehrLink))
+        'we look for this
+        '<p Class="teaserText">"Hören und Zuhören". Persönliche Affinitäten zu Stimmen, zu Klang und Musik, auch über die Stille, über Hören und Gehört-Werden, über Zuhören als erste Kontaktaufnahme mit dem Du von Daniel Landau, Lehrer und Dirigent. - Gestaltung: Alexandra Mantler</p>
+        Dim teasermtch As MatchCollection = New Regex((".*<p class=""teaserText"">(?<teaser>.*)</p>.*\n"), RegexOptions.IgnoreCase).Matches(fullMoreInfo)
+        fullMoreInfo = ""
+        For Each ms2 As Match In teasermtch
+            fullMoreInfo = removeControlcharsAndTagsAndSpaces(Trim(ms2.Groups("teaser").Value))
+        Next
+
+        Return fullMoreInfo
+    End Function
+
     Private Function trimToThisLength(ByVal s As String, ByVal maxLength As Integer) As String
         Dim sLoc As String = s
         If sLoc.Length > maxLength Then sLoc = sLoc.Substring(0, maxLength)
