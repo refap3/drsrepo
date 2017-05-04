@@ -132,6 +132,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="oe1_ORF_at - before 2017.htm" />
+    <Content Include="oe1_ORF_at.htm" />
+    <Content Include="oe1_ORF_at_detail.htm" />
+    <Content Include="programm[1] old format.htm" />
     <Content Include="programm[2] old format.htm" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
