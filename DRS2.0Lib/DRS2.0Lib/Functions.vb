@@ -86,15 +86,15 @@ Public Module Functions
             Dim objUTFenc As New UTF8Encoding
             Dim fullMoreInfo As String
 
-
-            fullMoreInfo = objUTFenc.GetString(objWebClient.DownloadData(mehrLink))
+            ' TODO: do NOT process moreInfo here this takes too long -- will do it at storage time! 
+            'fullMoreInfo = objUTFenc.GetString(objWebClient.DownloadData(mehrLink))
             ' we look for this
             '<p class="teaserText">"Hören und Zuhören". Persönliche Affinitäten zu Stimmen, zu Klang und Musik, auch über die Stille, über Hören und Gehört-Werden, über Zuhören als erste Kontaktaufnahme mit dem Du von Daniel Landau, Lehrer und Dirigent. - Gestaltung: Alexandra Mantler</p>
-            Dim teasermtch As MatchCollection = New Regex((".*<p class=""teaserText"">(?<teaser>.*)</p>.*\n"), RegexOptions.IgnoreCase).Matches(fullMoreInfo)
-            moreInfFound = ""
-            For Each ms2 As Match In teasermtch
-                moreInfFound = Trim(ms2.Groups("teaser").Value)
-            Next
+            'Dim teasermtch As MatchCollection = New Regex((".*<p class=""teaserText"">(?<teaser>.*)</p>.*\n"), RegexOptions.IgnoreCase).Matches(fullMoreInfo)
+            'moreInfFound = ""
+            'For Each ms2 As Match In teasermtch
+            '    moreInfFound = Trim(ms2.Groups("teaser").Value)
+            'Next
 
             moreInfFound = Trim(removeControlcharsAndTagsAndSpaces(moreInfFound))
             If timFound < lastTimefound Then day = day.AddDays(1)
