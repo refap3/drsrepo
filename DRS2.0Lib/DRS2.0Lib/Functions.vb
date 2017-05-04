@@ -66,7 +66,7 @@ Public Module Functions
 
         Dim ms As Match
         For Each ms In mtch
-            ntim = Trim(ms.Groups("time").Value)
+            ntim = Right(("0" & Trim(ms.Groups("time").Value)), 5) ' must add leading zero for later comparison 
             ntit = Trim(ms.Groups("title").Value)
             nlink = Trim(ms.Groups("link").Value)
             Debug.WriteLine(ntim & "##" & ntit & "##" & nlink)
