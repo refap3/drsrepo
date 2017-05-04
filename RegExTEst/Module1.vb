@@ -6,7 +6,7 @@ Module Module1
 
     Sub Main()
         Dim testOe1() As OE1Sendung
-        Dim oTx As String = My.Computer.FileSystem.ReadAllText("..\..\oe1_ORF_at.htm", New System.Text.UTF8Encoding)
+        Dim oTx As String = My.Computer.FileSystem.ReadAllText("..\..\Reference INFO\oe1_ORF_at.htm", New System.Text.UTF8Encoding)
 
         '' out next lines !
         'testOe1 = ParseOe1ProgTextByRegexTest(oTx, Now)

@@ -58,10 +58,14 @@ Public Module Functions
         'Dim mtch As MatchCollection = New Regex(((((("<h3>(<a class=""blk"".*){0,1}<span>(?<dumm1>.*)</span>(?<dumm2>.*?)(</a>){0,1}</h3>") & "(.*\n){2}" & "(?<dumm3>.*)\n") & "(?<dumm4>.*).*\n" & "(?<dumm5>.*)\n") & "(?<dumm6>.*)\n" & "(?<dumm7>.*)\n") & "(?<dumm8>.*)\n" & "(?<dumm9>.*)\n"), RegexOptions.IgnoreCase).Matches(prgText)
 
         '             <h3 data-detail-url="/broadcast/473914"><span class="programTime"> 5:00</span><a href="/programm/20170504/473914">Das Wichtigste zu Tagesbeginn</a></h3>
-        Dim mtch As MatchCollection = New Regex((".*data-detail-url.*<span class=""programTime"">(?<time>.*)</span><a href=""(?<link>.*)"">(?<title>.*)</a></h3>.*\n"), RegexOptions.IgnoreCase).Matches(prgText)
+        '              some one line -- AND THE NEXT IS OPTIONAL : (if not present there is an empty line )
+        '              <p class="programName">Punkt eins</p>
+        Dim mtch As MatchCollection = New Regex((".*data-detail-url.*<span class=""programTime"">(?<time>.*)</span><a href=""(?<link>.*)"">(?<title>.*)</a></h3>.*\n" & "(?<line2>.*)\n" & "(?<line3>.*)\n"), RegexOptions.IgnoreCase).Matches(prgText)
         Dim ntim As String = ""
         Dim ntit As String = ""
         Dim nlink As String = ""
+        Dim line2 As String = ""
+        Dim line3 As String = ""
 
 
         Dim ms As Match
@@ -69,11 +73,22 @@ Public Module Functions
             ntim = Right(("0" & Trim(ms.Groups("time").Value)), 5) ' must add leading zero for later comparison 
             ntit = Trim(ms.Groups("title").Value)
             nlink = Trim(ms.Groups("link").Value)
-            Debug.WriteLine(ntim & "##" & ntit & "##" & nlink)
+            line2 = Trim(ms.Groups("line2").Value)
+            line3 = Trim(ms.Groups("line3").Value)
+            typeFound = ""
+            ' try to parse line 3: 
+            If line3.Length > 1 Then
+                Dim typeMatch As MatchCollection = New Regex(".*<p class=""programName"">(?<type>.*)</p>.*", RegexOptions.IgnoreCase).Matches(line3)
+                For Each tms As Match In typeMatch
+                    typeFound = Trim(tms.Groups("type").Value)
+                Next
+            End If
+
+            Debug.WriteLine(ntim & "##" & ntit & "##" & nlink & "##" & "" & "##" & typeFound)
+
 
             timFound = ntim
             progFound = removeControlcharsAndTagsAndSpaces(ntit)
-            typeFound = "" ' gibts nimma !
             moreInfFound = ""
 
 
