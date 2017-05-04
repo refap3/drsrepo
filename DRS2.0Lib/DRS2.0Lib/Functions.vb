@@ -74,7 +74,7 @@ Public Module Functions
             timFound = ntim
             progFound = removeControlcharsAndTagsAndSpaces(ntit)
             typeFound = "" ' gibts nimma !
-            moreInfFound = "TBD"
+            moreInfFound = ""
 
 
             'MEHR Link logic ...
