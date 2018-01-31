@@ -1,3 +1,21 @@
+Bloody stream URL changed after 9.1.18 .....
+----------------------------------------------------
+
+from: mms://apasf.apa.at/oe1_live_worldwide
+to: http://mp3ooe1.apasf.sf.apa.at
+
+
+full URL seen in WM recorda is this: http://mp3ooe1.apasf.sf.apa.at/;stream.mp3
+
+
+WTF WTF WTF !
+----------------------
+
+
+
+
+
+
 Moved the focc to GITHUB after 2017 web redesign 3.5.2017
 ---------------------------------------------------------
 
