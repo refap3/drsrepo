@@ -11,9 +11,10 @@ full URL seen in WM recorda is this: http://mp3ooe1.apasf.sf.apa.at/;stream.mp3
 WTF WTF WTF !
 ----------------------
 
+also the output file changed to .mp3 from .asf wtf! again 
 
-
-
+looks like wmrecorda file are in sync now ... 
+test does NOT work !?!?!?
 
 
 Moved the focc to GITHUB after 2017 web redesign 3.5.2017

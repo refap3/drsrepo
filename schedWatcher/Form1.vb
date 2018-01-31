@@ -153,7 +153,8 @@ Public Class Form1
 
                 Try
                     Dim dstPath As String = trgDir & "\" & dy & "-" & fil.Name
-                    fil.MoveTo(Path.ChangeExtension(dstPath, ".wma"))    ' rename to wma
+
+                    fil.MoveTo(Path.ChangeExtension(dstPath, ".mp3"))    ' 9.1.18 it IS already MP3 -- !!
                     AppendToRecordLog("OK: " & dstPath)
                 Catch ex As Exception
                     addListBoxInfo("MOV faild-" & ex.Message)
