@@ -307,7 +307,12 @@ Public Module Functions
         For Each oe1Prog As OE1Sendung In mySelectedOes1s
             Dim rw As DRSDataSet.DRS20Row = ds.DRS20.NewDRS20Row
 
-            Dim fullMoreInfo As String = FindMoreInfoFromWeb(oe1Prog)
+            Dim fullMoreInfo As String
+            If oe1Prog.ProgramType = "TESTTYPE" Then
+                fullMoreInfo = "" ' do NOT download anything for TEST recordings ... 
+            Else
+                fullMoreInfo = FindMoreInfoFromWeb(oe1Prog)
+            End If
             rw.MP3OutFileName = trimToThisLength(oe1Prog.Program & fullMoreInfo, ds.DRS20.MP3OutFileNameColumn.MaxLength)
             rw.RecordingLegth = oe1Prog.Duration * 60
             rw.RecordingTime = oe1Prog.StartTime
