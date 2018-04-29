@@ -7,7 +7,7 @@ Imports System.Text
 
 Public Module Functions
 
-    Public Const ORFBASEURL = "http://oe1.orf.at/programm"
+    Public Const ORFBASEURL = "https://oe1.orf.at/programm"
     Public Const ORFPINGURL = "oe1.orf.at"
     Public Const EXCLUDEFILENAME = "Exclude.txt"
     Public Const LOGFILENAME = "RecordLog.txt"

@@ -1,3 +1,12 @@
+29.4.18
+--------------------------------
+
+Looks like oe1.orf.at switched to https only. 
+changed the BASE URL in functions and installed SP3 on WMRECORDA VM
+
+
+
+
 Bloody stream URL changed after 9.1.18 .....
 ----------------------------------------------------
 
