@@ -1,15 +1,30 @@
 BLOODY blues and troubles collected here 
 ---------------------------------------------
 
+
+
+4.7.18 bloody ssl cause stop working app 
+found this: https://weblog.west-wind.com/posts/2011/Feb/11/HttpWebRequest-and-Ignoring-SSL-Certificate-Errors
+i managed to to focc it into the DRS machine BUT dunno how post deployment will run 
+put the 2 config files here for future reference: 
+
+
+
+put webconfig in c:\inetpub\wwwroot\drs2.0
+put DRS...config in c:\4dos
+
+
+
+
 HOWTOdeploy web APP f.ckr
 --------------------------
 
   1. Build the web app to file system i.e. c:\temp\drs2.0 
   2. zip everything and check that bin and App_dat folder present 
   3. on TARGET:
-    ö delete everything below inetpub\wwwroot\drs2.0 
-	ö ad new files from zip 
-	ö on DRS2.0 dir: 
+    ï¿½ delete everything below inetpub\wwwroot\drs2.0 
+	ï¿½ ad new files from zip 
+	ï¿½ on DRS2.0 dir: 
 	  give ASPNET user fullcontrol
 	  goto advanced
 	  check inherit permissions and replace below
@@ -17,10 +32,10 @@ HOWTOdeploy web APP f.ckr
 	  (fckin cacls script does NOT really werke!)
  4. mite have to copy new .EXEs and .DLLs to \4dos directory 
  5. Complete Testplan:
-   ö check if DRS2.0 works
-   ö check iff entries in editeur can be edited/deleted
-   ö check iff correct entries are seen both in DRS2.0 as in WebApp!
-   ö reboot ...
+   ï¿½ check if DRS2.0 works
+   ï¿½ check iff entries in editeur can be edited/deleted
+   ï¿½ check iff correct entries are seen both in DRS2.0 as in WebApp!
+   ï¿½ reboot ...
    
    
     
@@ -77,18 +92,18 @@ be SURE ALWAYS to check into Source SAFE the LOCAL folders in MyDocs ARE NOT THE
 6. LIST OF CURRENT BUGz
 -----------------------------------------------------------------
 
-  ö cannot edit wmrecorda entry. This is made up at insert time - no goode
+  ï¿½ cannot edit wmrecorda entry. This is made up at insert time - no goode
   
-  ö schedWatcher kept disappearing after changes to thread handling during clock sync.
+  ï¿½ schedWatcher kept disappearing after changes to thread handling during clock sync.
   removed thread handling again and corrected bugs in Sync class maybe this will help
   NO id did NOT - re introduced seperate threads ...  
   
-  ö Lost last version of .mdb DUE to bloody PUBLISHING !
+  ï¿½ Lost last version of .mdb DUE to bloody PUBLISHING !
   
-  ö add the SAUGALLYOUCAN mode 
+  ï¿½ add the SAUGALLYOUCAN mode 
     DONE is in Testing on WMRECORDA
   
-  ö exclude.txt wird per filename alleine gelsesn - dasn geht NIE so bei WinApp und WebApp
+  ï¿½ exclude.txt wird per filename alleine gelsesn - dasn geht NIE so bei WinApp und WebApp
     im Augenblick sind das 2 VERSCHIEDENE Dateien !!
     --------------------------------
     CORRECT THIS SOMETIME !!!!

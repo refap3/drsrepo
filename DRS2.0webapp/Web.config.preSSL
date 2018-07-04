@@ -42,12 +42,4 @@
         </customErrors>
         -->
 	</system.web>
-	  <system.net>
-	      <settings>
-	            <servicePointManager
-	                      checkCertificateName="false"
-	                                checkCertificateRevocationList="false"         
-	                                      />
-	      </settings>
-	    </system.net>
 </configuration>
