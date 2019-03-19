@@ -71,7 +71,7 @@ Public Class OE1Sendung
         Get
             '            Return "rtsp://stream4.orf.at/oe1-wort title: " & replaceUmlaute(Me.Program) & " (Windows Media) start: " & DTconvs.FormatDateTimeToLocale(Me.StartTime) & " end: " & DTconvs.FormatDateTimeToLocale(Me.EndTime) & " daily: Once authenticate: "
             '             Return "mms://apasf.apa.at/oe1_live_worldwide title: " & "<<filename>>" & " (Windows Media) start: " & DTconvs.FormatDateTimeToLocale(Me.StartTime) & " end: " & DTconvs.FormatDateTimeToLocale(Me.EndTime) & " daily: Once authenticate: "
-            Return "http://mp3ooe1.apasf.sf.apa.at title: " & "<<filename>>" & " (Windows Media) start: " & DTconvs.FormatDateTimeToLocale(Me.StartTime) & " end: " & DTconvs.FormatDateTimeToLocale(Me.EndTime) & " daily: Once authenticate: "
+            Return "http://mp3stream3.apasf.apa.at/;stream.mp3 title: " & "<<filename>>" & " (Windows Media) start: " & DTconvs.FormatDateTimeToLocale(Me.StartTime) & " end: " & DTconvs.FormatDateTimeToLocale(Me.EndTime) & " daily: Once authenticate: "
 
         End Get
     End Property

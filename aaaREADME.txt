@@ -13,6 +13,11 @@ Bloody stream URL changed after 9.1.18 .....
 from: mms://apasf.apa.at/oe1_live_worldwide
 to: http://mp3ooe1.apasf.sf.apa.at
 
+Foccing bloody stream changed 19.3.19 because of HISS and CLICKS -- dunno if it helps though!
+------------------------------------------------------------------------------------------------------
+
+new: http://mp3stream3.apasf.apa.at/;stream.mp3
+
 
 full URL seen in WM recorda is this: http://mp3ooe1.apasf.sf.apa.at/;stream.mp3
 
