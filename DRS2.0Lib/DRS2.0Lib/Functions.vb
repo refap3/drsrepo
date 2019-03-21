@@ -196,8 +196,24 @@ Public Module Functions
         s = s.Replace("&quot;", "")
         s = s.Replace("&nbsp;", " ")
         s = s.Replace("""", "")
+        s = s.Replace("?", "")
         Return Trim(s)
     End Function
+    Public Function removeControlcharsAndTagsAndSpacesAndUmlauts(ByVal str As String) As String
+        ' remove &quot; AND &nbsp; as well ! and atags and double spaces 
+        Dim s As String = removeControlcharsAndTagsAndSpaces(str)
+        ' remove umlauts as well -- do this for bloody umlauts in exclude list 
+        s = s.Replace("ä", "")
+        s = s.Replace("ö", "")
+        s = s.Replace("ü", "")
+        s = s.Replace("Ä", "")
+        s = s.Replace("Ö", "")
+        s = s.Replace("Ü", "")
+        s = s.Replace("ß", "")
+        Return Trim(s)
+    End Function
+
+
 
     Public Function LoadFilterList(ByVal filename As String) As String()
         Dim inText As String = My.Computer.FileSystem.ReadAllText(filename)
@@ -223,8 +239,8 @@ Public Module Functions
         For Each oneOE1s As OE1Sendung In myOe1s
             Dim skipp As Boolean = False
             For Each filt As String In filtered
-                filt = removeControlcharsAndTagsAndSpaces(filt).ToLower
-                If Trim(filt) <> "" Then skipp = (oneOE1s.Program.ToLower.IndexOf(filt) <> -1)
+                filt = removeControlcharsAndTagsAndSpacesAndUmlauts(filt).ToLower
+                If Trim(filt) <> "" Then skipp = (removeControlcharsAndTagsAndSpacesAndUmlauts(oneOE1s.Program).ToLower.IndexOf(filt) <> -1)
                 If skipp Then Exit For
             Next
             If Not skipp Then
@@ -243,8 +259,8 @@ Public Module Functions
         For Each oneOE1s As OE1Sendung In myOe1s
             Dim skipp As Boolean = False
             For Each filt As String In filtered
-                filt = removeControlcharsAndTagsAndSpaces(filt).ToLower
-                If Trim(filt) <> "" Then skipp = (oneOE1s.Program.ToLower.IndexOf(filt) <> -1)
+                filt = removeControlcharsAndTagsAndSpacesAndUmlauts(filt).ToLower
+                If Trim(filt) <> "" Then skipp = (removeControlcharsAndTagsAndSpacesAndUmlauts(oneOE1s.Program).ToLower.IndexOf(filt) <> -1)
                 If skipp Then Exit For
             Next
             If Not skipp Then
