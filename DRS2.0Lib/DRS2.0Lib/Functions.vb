@@ -595,14 +595,17 @@ Public Module Functions
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "ü", "ue")
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "Ü", "Ue")
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "ß", "ss")
+        ' starnge case that I had Fragezeichen in out file -- WTF !
+        DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "?", "")
         regEXP = CreateObject("vbscript.regEXP")
         regEXP.Global = True
         regEXP.IgnoreCase = True
-        regEXP.Pattern = "[^a-z0-9\_\-\+\(\)\ \:\\]"
+        regEXP.Pattern = "[^a-z0-9\_\-\ \\]" ' alse remove runde Klammern !and PLUS and colons
         Return regEXP.Replace(DRSCorrectFileNameChars, "_")
     End Function
 
     Public Function replaceUmlaute(ByVal str As String) As String
-        Return str.Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("Ä", "Ae").Replace("Ö", "Oe").Replace("Ü", "Ue").Replace("ß", "ss")
+        '        Return str.Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("Ä", "Ae").Replace("Ö", "Oe").Replace("Ü", "Ue").Replace("ß", "ss")
+        Return DRSCorrectFileNameChars(str) ' bloody focc had left Fragezeichen over 
     End Function
 End Module
