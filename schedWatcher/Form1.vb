@@ -140,10 +140,16 @@ Public Class Form1
         For Each fil As FileInfo In di.GetFiles
             If (fil.Extension).ToLower = mediaFILEEXTENSION Then
                 addListBoxInfo("try MOV media fil:-" & fil.Name)
-                Dim yr As String, mo As String, dy As String
+                Dim yr As String, mo As String, dy As String, hh As String, mm As String
                 yr = fil.CreationTime.Year.ToString
                 mo = fil.CreationTime.Month.ToString("00")
                 dy = fil.CreationTime.Day.ToString("00")
+                hh = fil.CreationTime.Hour.ToString("00")
+                mm = fil.CreationTime.Minute.ToString("00")
+
+                If My.Settings.IncludeHHMMinFilename Then
+                    dy += "-" & hh & mm
+                End If
 
                 Dim trgDir As String = My.Settings.asfARCHIVEdirectory
                 trgDir &= "\" & yr
