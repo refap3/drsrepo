@@ -1,0 +1,7 @@
+do forever
+:again
+  inkey /w 10 waiting ...  %%x
+  on error goto again
+  activate  "security alert" 
+   keystack /w54 Y
+enddo
