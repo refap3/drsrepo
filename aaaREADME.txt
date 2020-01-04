@@ -1,3 +1,13 @@
+4.1.20
+----------------------------
+
+reactivated CLONE aka record everything ... 
+could ot get past security dialog so i created a .btm to handle it
+also drs2 connection pointed to some old shit
+
+
+
+
 29.4.18
 --------------------------------
 
