@@ -5,6 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BE3FC446-5A06-40B0-BF23-9933FA64414C}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		aaaREADME.txt = aaaREADME.txt
 		aspnetsec.bat = aspnetsec.bat
 		Exclude.txt = Exclude.txt
