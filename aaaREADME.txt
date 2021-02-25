@@ -1,7 +1,9 @@
 25.02.21
 --------------------------------
 managed to run IISexpress on port 80 BUT no foccing debugger in Webapp?!?!?!?
-
+see this link: https://docs.microsoft.com/en-us/iis/extensions/using-iis-express/handling-url-binding-failures-in-iis-express 
+essentially i used the command: netsh http add urlacl url=http://localhost:80/ user=everyone
+then the project ran on port 80 ?!?!?!?
 
 created drs3.1 (3.0 was debug focced) branch since bloody ORF switched from static player url to js player .... WTF
 
