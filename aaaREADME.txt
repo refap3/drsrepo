@@ -1,3 +1,31 @@
+25.02.21
+--------------------------------
+
+created drs3.1 (3.0 was debug focced) branch since bloody ORF switched from static player url to js player .... WTF
+
+a possible path to the new solution looks like this: 
+-------------------------------------------------------
+
+0. use Windows Server 2012 R2 ...
+1. use a fixed url (live OE1 player) and a browser that autoplays from there (i.e. Opera) https://oe1.orf.at/player/live
+2. from a background job start and stop the browser at the saved points in time
+3. install media center (25) and WDM driver
+4. make MC default speaker and define default play zone as diskwriter
+5. convert .wav files to MP3(192kbit) [or FLAC] 
+6. rename MP3 files according to schedule and move them to target directory
+
+alternatives
+-------------
+
+1. leave web site as IS and create schedule file from XP Machine 
+2. add a job to read and handle schedule file 
+
+pro: easier to implement
+con: need 2 vms for recording
+
+
+
+
 4.1.20
 ----------------------------
 
