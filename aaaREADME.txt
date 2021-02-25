@@ -1,5 +1,7 @@
 25.02.21
 --------------------------------
+managed to run IISexpress on port 80 BUT no foccing debugger in Webapp?!?!?!?
+
 
 created drs3.1 (3.0 was debug focced) branch since bloody ORF switched from static player url to js player .... WTF
 
