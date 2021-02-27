@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>DRS 2.0 - the web solution!</title>
+    <title>DRS 3.1 - the web solution!</title>
 </head>
 <body>
     <form id="form1" runat="server">
