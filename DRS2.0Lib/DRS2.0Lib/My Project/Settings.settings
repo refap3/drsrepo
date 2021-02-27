@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="SCHEDULETEXTFILE" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\temp\scheduled.txt</Value>
+      <Value Profile="(Default)">C:\temp\scheduled.csv</Value>
     </Setting>
     <Setting Name="DRS2_0Lib_schedViaWebServc_ScheduledFileAccess" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost/DRS2.0/WSFileAccess.asmx</Value>

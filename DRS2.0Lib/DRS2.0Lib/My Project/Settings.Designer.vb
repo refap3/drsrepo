@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\temp\scheduled.txt")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\temp\scheduled.csv")>  _
         Public ReadOnly Property SCHEDULETEXTFILE() As String
             Get
                 Return CType(Me("SCHEDULETEXTFILE"),String)

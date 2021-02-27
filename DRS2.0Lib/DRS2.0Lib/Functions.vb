@@ -197,6 +197,8 @@ Public Module Functions
         s = s.Replace("&nbsp;", " ")
         s = s.Replace("""", "")
         s = s.Replace("?", "")
+        s = s.Replace("*", "")
+        s = s.Replace(":", "")
         Return Trim(s)
     End Function
     Public Function removeControlcharsAndTagsAndSpacesAndUmlauts(ByVal str As String) As String
@@ -403,11 +405,11 @@ Public Module Functions
         Dim ta As DRSDataSetTableAdapters.DRS20TableAdapter = getDRS20TableAdapter()
         ta.FillByNow(ds.DRS20)
 
-        Dim outText As String = ""
+        Dim outText As String = "RecordingTime;EndTime;Length;FileName" & vbCrLf
 
         For Each rw As DRSDataSet.DRS20Row In ds.DRS20.Rows
             'outText &= rw.WMrecorderEntry.Replace("<<filename>>", replaceUmlaute(rw.MP3OutFileName)) & vbCrLf
-            outText &= rw.RecordingTime & ";" & rw.RecordingLegth & ";" & replaceUmlaute(rw.MP3OutFileName) & vbCrLf
+            outText &= rw.RecordingTime & ";" & (rw.RecordingTime).AddSeconds(rw.RecordingLegth) & ";" & rw.RecordingLegth & ";" & replaceUmlaute(rw.MP3OutFileName) & vbCrLf
         Next
         DeleteScheduleFile(viaWebService)
         Return (writeToSchedFile(outText, viaWebService))
