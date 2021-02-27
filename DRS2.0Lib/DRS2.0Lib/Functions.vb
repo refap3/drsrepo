@@ -400,13 +400,14 @@ Public Module Functions
     Public Function writeRecordingInfoFromDRS20Database(ByVal viaWebService As Boolean) As String
         ' attach to DRS 2.0 DB 
         Dim ds As New DRSDataSet
-        Dim ta As DRSDataSetTableAdapters.WmrecordaTableAdapter = getwmrecordaTableAdapter()
-        ta.Fill(ds.Wmrecorda)
+        Dim ta As DRSDataSetTableAdapters.DRS20TableAdapter = getDRS20TableAdapter()
+        ta.FillByNow(ds.DRS20)
 
         Dim outText As String = ""
 
-        For Each rw As DRSDataSet.WmrecordaRow In ds.Wmrecorda.Rows
-            outText &= rw.WMrecorderEntry.Replace("<<filename>>", replaceUmlaute(rw.MP3OutFileName)) & vbCrLf
+        For Each rw As DRSDataSet.DRS20Row In ds.DRS20.Rows
+            'outText &= rw.WMrecorderEntry.Replace("<<filename>>", replaceUmlaute(rw.MP3OutFileName)) & vbCrLf
+            outText &= rw.RecordingTime & ";" & rw.RecordingLegth & ";" & replaceUmlaute(rw.MP3OutFileName) & vbCrLf
         Next
         DeleteScheduleFile(viaWebService)
         Return (writeToSchedFile(outText, viaWebService))
@@ -482,7 +483,7 @@ Public Module Functions
             End Try
             outText &= schedContent
             My.Computer.FileSystem.WriteAllText(schedFileName, outText, False, New System.Text.ASCIIEncoding)
-            My.Computer.FileSystem.WriteAllText(schedFileName & ".BGINFO", OE1Sendung.unRawWmrecordaEntry(outText, 45), False, New System.Text.ASCIIEncoding)
+            'My.Computer.FileSystem.WriteAllText(schedFileName & ".BGINFO", OE1Sendung.unRawWmrecordaEntry(outText, 45), False, New System.Text.ASCIIEncoding)
             outText = My.Computer.FileSystem.ReadAllText(schedFileName)
         End If
 
@@ -490,7 +491,7 @@ Public Module Functions
     End Function
 
     Public Function ReadFromScheduleFile(ByVal viaWebService As Boolean) As String
-        Return ReadFromScheduleFile(viaWebService, False)
+        Return ReadFromScheduleFile(viaWebService, True)
     End Function
 
     Public Function ReadFromScheduleFile(ByVal viaWebService As Boolean, ByVal rawDisplay As Boolean) As String

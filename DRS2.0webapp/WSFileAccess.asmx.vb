@@ -17,8 +17,8 @@ Public Class WSFileAccess
 
         Debug.WriteLine("WS--ENTER  SaveScheduleFile ")
         Try
-            Debug.WriteLine("WS--ABOUT to write BGINFO file ")
-            My.Computer.FileSystem.WriteAllText(getSCHEDULETEXTFILEname() & ".BGINFO", OE1Sendung.unRawWmrecordaEntry(schedFileContent), False, New System.Text.ASCIIEncoding)
+            'Debug.WriteLine("WS--ABOUT to write BGINFO file ")
+            'My.Computer.FileSystem.WriteAllText(getSCHEDULETEXTFILEname() & ".BGINFO", OE1Sendung.unRawWmrecordaEntry(schedFileContent), False, New System.Text.ASCIIEncoding)
             Debug.WriteLine("WS--ABOUT to write schedule file ")
             My.Computer.FileSystem.WriteAllText(getSCHEDULETEXTFILEname(), schedFileContent, False, New System.Text.ASCIIEncoding)
         Catch ex As Exception

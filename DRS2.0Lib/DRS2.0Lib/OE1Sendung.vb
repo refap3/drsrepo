@@ -77,27 +77,28 @@ Public Class OE1Sendung
     End Property
 
     Public Shared Function unRawWmrecordaEntry(ByVal entry As String, ByVal maxCols As Integer) As String
-        ' split by LF
-        Dim entries() As String = entry.Split(vbLf)
-        Dim outtext As String = ""
-        If entry.Length > 2 Then
-            For Each s As String In entries
-                If Trim(s) <> "" And s.Length > 2 Then
-                    Dim prStart, prEnd, prProgram As String
-                    prProgram = strBetween(s, "title: ", " (Windows Media) ")
-                    If maxCols > 0 Then
-                        If prProgram.Length > maxCols Then
-                            prProgram = prProgram.Substring(0, maxCols)
-                        End If
-                    End If
-                    prStart = strBetween(s, "start: ", "end: ")
-                    prEnd = strBetween(s, "end: ", "daily: ")
-                    prStart = DTconvs.FormatDateTimeToLocale(prStart, "en-US", "de-AT", "yyyy-MM-dd HH:mm")
-                    prEnd = DTconvs.FormatDateTimeToLocale(prEnd, "en-US", "de-AT", "HH:mm")
-                    outtext &= prStart & "-" & prEnd & " " & prProgram & vbCrLf
-                End If
-            Next
-        End If
+        Dim outtext As String = entry
+
+        ''' split by LF
+        ''Dim entries() As String = entry.Split(vbLf)
+        ''If entry.Length > 2 Then
+        ''    For Each s As String In entries
+        ''        If Trim(s) <> "" And s.Length > 2 Then
+        ''            Dim prStart, prEnd, prProgram As String
+        ''            prProgram = strBetween(s, "title: ", " (Windows Media) ")
+        ''            If maxCols > 0 Then
+        ''                If prProgram.Length > maxCols Then
+        ''                    prProgram = prProgram.Substring(0, maxCols)
+        ''                End If
+        ''            End If
+        ''            prStart = strBetween(s, "start: ", "end: ")
+        ''            prEnd = strBetween(s, "end: ", "daily: ")
+        ''            prStart = DTconvs.FormatDateTimeToLocale(prStart, "en-US", "de-AT", "yyyy-MM-dd HH:mm")
+        ''            prEnd = DTconvs.FormatDateTimeToLocale(prEnd, "en-US", "de-AT", "HH:mm")
+        ''            outtext &= prStart & "-" & prEnd & " " & prProgram & vbCrLf
+        ''        End If
+        ''    Next
+        ''End If
         Return outtext
     End Function
     Public Shared Function unRawWmrecordaEntry(ByVal entry As String) As String
