@@ -1,3 +1,16 @@
+27.02.21
+--------------------------
+
+Managed to find out why deployment on VM would not run, did this: 
+
+1. Build only from x86 CPU
+2. install AccessDatabaseEngine.exe (x86 NOT x64!!)
+3. in IIS appPool enable 32-bit applications 
+4. in AppPool sed identity to administrator -- i know it sucks !
+5. AppPool: V4, integrated ....
+
+
+
 25.02.21
 --------------------------------
 managed to run IISexpress on port 80 BUT no foccing debugger in Webapp?!?!?!?
