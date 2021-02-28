@@ -68,7 +68,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("\\es\t$\tempWMrecordaRECORDINGS")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("T:\tempWMrecordaRECORDINGS")>  _
         Public Property asfARCHIVEdirectory() As String
             Get
                 Return CType(Me("asfARCHIVEdirectory"),String)

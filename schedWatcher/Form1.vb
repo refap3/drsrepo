@@ -139,7 +139,7 @@ Public Class Form1
         Dim di As New DirectoryInfo(My.Settings.asfWATCHdirectory)
         For Each fil As FileInfo In di.GetFiles
             If (fil.Extension).ToLower = mediaFILEEXTENSION Then
-                addListBoxInfo("try MOV media fil:-" & fil.Name)
+                addListBoxInfo("try MOV media fil: " & fil.Name)
                 Dim yr As String, mo As String, dy As String, hh As String, mm As String
                 yr = fil.CreationTime.Year.ToString
                 mo = fil.CreationTime.Month.ToString("00")
@@ -160,10 +160,16 @@ Public Class Form1
                 Try
                     Dim dstPath As String = trgDir & "\" & dy & "-" & fil.Name
 
-                    fil.MoveTo(Path.ChangeExtension(dstPath, ".mp3"))    ' 9.1.18 it IS already MP3 -- !!
-                    AppendToRecordLog("OK: " & dstPath)
+                    'fil.MoveTo(Path.ChangeExtension(dstPath, ".mp3"))    ' 9.1.18 it IS already MP3 -- !!
+                    ' ALWAYS produces bloody error  but looks OK -- error is from AppendToRecordLog !!!
+
+                    'AppendToRecordLog("[maybe] OK: " & dstPath)
+                    'addListBoxInfo("Lofile path: " & getPathtoAppData())
+
+                    fil.MoveTo(dstPath)    ' 9.1.18 it IS already MP3 -- !!
+                    addListBoxInfo(" MOVEed ..." & dstPath)
                 Catch ex As Exception
-                    addListBoxInfo("MOV faild-" & ex.Message)
+                    addListBoxInfo("MOV faild- maybe still OK: " & ex.Message)
                 End Try
             End If
         Next

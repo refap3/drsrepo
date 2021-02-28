@@ -1,32 +1,24 @@
 # WM recorder in powershell ...
 #
-
+$BrowserName = "opera"
+$wmrecs =Import-Csv c:\temp\scheduled.csv -Delimiter ";" | Select @{Name="RecordingTime";Expression={(Get-date $_.RecordingTime)}}, @{Name="EndTime";Expression={(get-date $_.EndTime)}}, @{Name="Length";Expression={[int32]$_.Length}}, Filename  | where Recordingtime -gt (get-date)
+if ($wmrecs.Length -gt 0 ) {echo "$($wmrecs.length) recording(s) ... Next @ $($wmrecs[0].RecordingTime) to $($wmrecs[0].EndTime.Hour.ToString('00')):$($wmrecs[0].EndTime.Minute.ToString('00')) - $($wmrecs[0].FileName)" }
 while ($true)
 {
-  echo "New Import ... 1st recording is:"
-  $wmrecs =Import-Csv c:\temp\scheduled.csv -Delimiter ";"
-
-  echo $wmrecs[0].FileName, $wmrecs[0].RecordingTime
-  $wmrecs | %{
-      
-  
-    if ( ((get-date) -ge (get-date $_.RecordingTime)) -and ((get-date) -le (get-date $_.EndTime)) ) 
+   $wmrecs | %{
+    if ( ((get-date) -ge ( $_.RecordingTime)) -and ((get-date) -le ( $_.EndTime)) ) 
     {
-      echo will record NOW
-      echo $_.FileName, $_.RecordingTime
+      echo "record NOW $($_.FileName) $($_.RecordingTime)"
       start http://r-schmidt.com/oe1.html 
-      sleep ((get-date $_.EndTime) - (get-date)).totalseconds # sleep until end time 
+      sleep (($_.EndTime) - (get-date)).totalseconds # sleep until end time 
       
-      ps opera|kill
-      sleep 4
-      
-                    # must file rename here .. take youngest and rename to saved argument ...
-    
+      ps $BrowserName|kill
+      sleep 3
+
+      # rename out file 
       $files=ls c:\temp\*.mp3|sort LastWriteTime -Descending
       $lastf=$files[0]
       Rename-Item -Path $lastf.FullName -NewName "$($_.FileName).mp3"
-           
-       
     }
   }
   sleep 2

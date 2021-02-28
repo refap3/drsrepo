@@ -11,7 +11,7 @@ Public Module Functions
     Public Const ORFPINGURL = "oe1.orf.at"
     Public Const EXCLUDEFILENAME = "Exclude.txt"
     Public Const LOGFILENAME = "RecordLog.txt"
-    Public Const PATHTOWMRECORDA = "C:\Program Files\WMR11\WMR11.exe"
+    Public Const PATHTOWMRECORDA = "C:\drs\wmrecorder.exe"
     Public Const RELATIVEWMRTARGETHOSTWEBSERVICEURL = "/drs2.0/WSFileAccess.asmx"
 
     Private WMRHOST As String = "-"  ' set this to deploy and retrieve schedule file via WS, i.e. wmrecorda

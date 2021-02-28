@@ -6,7 +6,7 @@
       <Value Profile="(Default)">c:\temp</Value>
     </Setting>
     <Setting Name="asfARCHIVEdirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">\\es\t$\tempWMrecordaRECORDINGS</Value>
+      <Value Profile="(Default)">T:\tempWMrecordaRECORDINGS</Value>
     </Setting>
     <Setting Name="WEBRADIOTIMELAGINSECS" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30</Value>
