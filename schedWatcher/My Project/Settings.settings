@@ -12,10 +12,10 @@
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="RECORDERHOST" Type="System.String" Scope="User">
-      <Value Profile="(Default)">wmrecorda</Value>
+      <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="FILESERVINGHOST" Type="System.String" Scope="User">
-      <Value Profile="(Default)">wmrecorda</Value>
+      <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="renameFILEEXTENSION" Type="System.String" Scope="User">
       <Value Profile="(Default)">.mp3</Value>

@@ -163,11 +163,11 @@ Public Class Form1
                     'fil.MoveTo(Path.ChangeExtension(dstPath, ".mp3"))    ' 9.1.18 it IS already MP3 -- !!
                     ' ALWAYS produces bloody error  but looks OK -- error is from AppendToRecordLog !!!
 
-                    'AppendToRecordLog("[maybe] OK: " & dstPath)
                     'addListBoxInfo("Lofile path: " & getPathtoAppData())
 
                     fil.MoveTo(dstPath)    ' 9.1.18 it IS already MP3 -- !!
                     addListBoxInfo(" MOVEed ..." & dstPath)
+                    AppendToRecordLog("OK: " & dstPath)
                 Catch ex As Exception
                     addListBoxInfo("MOV faild- maybe still OK: " & ex.Message)
                 End Try

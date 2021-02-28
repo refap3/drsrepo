@@ -92,7 +92,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("wmrecorda")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("localhost")>  _
         Public Property RECORDERHOST() As String
             Get
                 Return CType(Me("RECORDERHOST"),String)
@@ -104,7 +104,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("wmrecorda")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("localhost")>  _
         Public Property FILESERVINGHOST() As String
             Get
                 Return CType(Me("FILESERVINGHOST"),String)
