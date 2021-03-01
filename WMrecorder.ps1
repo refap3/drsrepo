@@ -1,6 +1,8 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.15
+$BuildNumber=1.16
+$secondsBefore=5 # adjust recording time range ...
+$secondsAfter=30
 $BrowserName = "opera"
 while ($true) # use another outer loop for break inside inner loop 
 {
@@ -15,7 +17,7 @@ while ($true) # use another outer loop for break inside inner loop
     if ($wmrecs -ne $null) 
     {
       $nextRec = $wmrecs[0]
-      $ssecs=(($nextRec.RecordingTime) - (get-date)).totalseconds
+      $ssecs=(($nextRec.RecordingTime) - (get-date)).totalseconds + $secondsBefore
       $smins=$ssecs/60
     
       # if enough time until next recording sleep and re-read schedule again 
@@ -26,7 +28,7 @@ while ($true) # use another outer loop for break inside inner loop
       if ($ssecs -gt 0 ) {sleep  $ssecs } # sleep until start time 
       echo "recording NOW: $($nextRec.RecordingTime) to $($nextRec.EndTime.Hour.ToString('00')):$($nextRec.EndTime.Minute.ToString('00')) - $($nextRec.FileName)"
       start $nextRec.Link
-      sleep (($nextRec.EndTime) - (get-date)).totalseconds # sleep until end time 
+      sleep ((($nextRec.EndTime) - (get-date)).totalseconds + $secondsAfter) # sleep until end time 
       
       ps $BrowserName|kill -ErrorAction SilentlyContinue
       sleep 3

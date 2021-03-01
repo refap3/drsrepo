@@ -575,8 +575,10 @@ Public Module Functions
         For i As Integer = 1 To numberOfItems
             Dim newOe1 As OE1Sendung
             newOe1 = New OE1Sendung(someDate.ToString("HH:mm"), someDate.ToString("yyyy-MM-dd"), "test", "prog " & i.ToString("000") & "-min-" & someDate.ToString("mm"), "no more info", "", "TESTTYPE")
-            someDate = someDate.AddMinutes(1)
+            ' use the SAME end time this will result in short recordings only overlay time interval is used for recording (+5 / +30 secs) ...
             newOe1.SetEndTime(someDate.ToString("yyyy-MM-dd"), someDate.ToString("HH:mm"))
+
+            someDate = someDate.AddMinutes(1)
 
             Dim tmp As Integer = newOe1.Duration 'debug helper 
             Array.Resize(outOE1s, outOE1s.Length + 1)
