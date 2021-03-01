@@ -405,16 +405,15 @@ Public Module Functions
         Dim ta As DRSDataSetTableAdapters.DRS20TableAdapter = getDRS20TableAdapter()
         ta.FillByNow(ds.DRS20)
 
-        Dim outText As String = "RecordingTime;EndTime;Length;FileName" & vbCrLf
+        Dim outText As String = "RecordingTime;EndTime;Length;FileName;Link" & vbCrLf
 
         For Each rw As DRSDataSet.DRS20Row In ds.DRS20.Rows
             'outText &= rw.WMrecorderEntry.Replace("<<filename>>", replaceUmlaute(rw.MP3OutFileName)) & vbCrLf
-            outText &= rw.RecordingTime & ";" & (rw.RecordingTime).AddSeconds(rw.RecordingLegth) & ";" & rw.RecordingLegth & ";" & replaceUmlaute(rw.MP3OutFileName) & vbCrLf
+            outText &= rw.RecordingTime & ";" & (rw.RecordingTime).AddSeconds(rw.RecordingLegth) & ";" & rw.RecordingLegth & ";" & replaceUmlaute(rw.MP3OutFileName) & ";" & My.Settings.DRSRECORDINGLINK & vbCrLf
         Next
         DeleteScheduleFile(viaWebService)
         Return (writeToSchedFile(outText, viaWebService))
     End Function
-
 
     Private Function getDRS20TableAdapter() As DRSDataSetTableAdapters.DRS20TableAdapter
         ' returs a  patched table adapter 

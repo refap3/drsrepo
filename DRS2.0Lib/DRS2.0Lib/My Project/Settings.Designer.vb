@@ -103,6 +103,24 @@ Namespace My
                 Return CType(Me("DRS2_0Lib_WSfileacc_WSFileAccess"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("http://r-schmidt.com/oe1.html")>  _
+        Public ReadOnly Property DRSRECORDINGLINK() As String
+            Get
+                Return CType(Me("DRSRECORDINGLINK"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public ReadOnly Property Setting() As String
+            Get
+                Return CType(Me("Setting"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

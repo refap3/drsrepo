@@ -27,5 +27,11 @@
     <Setting Name="DRS2_0Lib_WSfileacc_WSFileAccess" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://localhost/DRS2.0/WSFileAccess.asmx</Value>
     </Setting>
+    <Setting Name="DRSRECORDINGLINK" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://r-schmidt.com/oe1.html</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
