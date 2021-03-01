@@ -24,13 +24,14 @@ Public Class Form1
     Private Sub FileSystemWatcher1_Changed(ByVal sender As Object, ByVal e As System.IO.FileSystemEventArgs) Handles FileSystemWatcher1.Changed
         addListBoxInfo("change detected to: " & e.FullPath)
         If Trim(e.FullPath).ToLower = Trim(getSCHEDULETEXTFILEname()).ToLower Then
-            addListBoxInfo("SCHED file changed -- restart wmrecorder!")
+            addListBoxInfo("SCHED file changed -- DO NOT restart wmrecorder!")
             If Not IsNothing(t) Then
                 t.Abort()
                 addListBoxInfo("ABORT old hound waiting thread!!")
             End If
             t = New Threading.Thread(AddressOf AcTION)
-            t.Start()
+            'Do NOT kill !
+            't.Start()
         End If
     End Sub
 
