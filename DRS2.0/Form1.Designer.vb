@@ -28,7 +28,6 @@ Partial Class Form1
         Me.Button13 = New System.Windows.Forms.Button()
         Me.Button12 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
-        Me.Button11 = New System.Windows.Forms.Button()
         Me.cbViaWebService = New System.Windows.Forms.CheckBox()
         Me.Button9 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
@@ -91,7 +90,6 @@ Partial Class Form1
         Me.TabPage2.Controls.Add(Me.Button13)
         Me.TabPage2.Controls.Add(Me.Button12)
         Me.TabPage2.Controls.Add(Me.Button10)
-        Me.TabPage2.Controls.Add(Me.Button11)
         Me.TabPage2.Controls.Add(Me.cbViaWebService)
         Me.TabPage2.Controls.Add(Me.Button9)
         Me.TabPage2.Controls.Add(Me.Button8)
@@ -136,15 +134,6 @@ Partial Class Form1
         Me.Button10.TabIndex = 13
         Me.Button10.Text = "dispWSredir"
         Me.Button10.UseVisualStyleBackColor = True
-        '
-        'Button11
-        '
-        Me.Button11.Location = New System.Drawing.Point(182, 43)
-        Me.Button11.Name = "Button11"
-        Me.Button11.Size = New System.Drawing.Size(213, 23)
-        Me.Button11.TabIndex = 12
-        Me.Button11.Text = "to DRS 1.0 Database"
-        Me.Button11.UseVisualStyleBackColor = True
         '
         'cbViaWebService
         '
@@ -435,7 +424,6 @@ Partial Class Form1
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
     Friend WithEvents cbViaWebService As System.Windows.Forms.CheckBox
-    Friend WithEvents Button11 As System.Windows.Forms.Button
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

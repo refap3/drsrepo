@@ -293,28 +293,6 @@ Public Module Functions
         SaveFilterList(EXCLUDEFILENAME, testFilter)
     End Sub
 
-    Public Sub SaveRecordingInfoFromCheckedListBoxTODRS10DATABASE(ByVal clb As CheckedListBox)
-        ' enter checked info to old DRS database 
-
-        Dim ds As New DRSDataSet
-        Dim ta As New DRSDataSetTableAdapters.DRSTableAdapter
-        ta.Fill(ds.DRS)
-        For Each oe1Prog As OE1Sendung In clb.CheckedItems
-            Dim rw As DRSDataSet.DRSRow = ds.DRS.NewDRSRow
-
-            rw.MP3OutFileName = "y:\mp3\" & DRSCorrectFileNameChars(oe1Prog.Program)
-            rw.RecordingLegth = oe1Prog.Duration * 60
-            rw.DoEncode = True
-            rw.RecordingTime = oe1Prog.StartTime
-            rw.EncoderBitrate = 6
-            rw.SampleRate = 2
-            rw.BurnerMode = 1
-            rw.EncoderQuality = 2
-            rw.BurnerSpeed = 0
-            ds.DRS.Rows.Add(rw)
-        Next
-        ta.Update(ds.DRS)
-    End Sub
 
     Public Function SaveRecordingInfoTODRS20DATABASE(ByVal mySelectedOes1s() As OE1Sendung) As String
         ' save to DRS 2.0 DB 

@@ -126,11 +126,7 @@ Public Class Form1
 
 
 
-    Private Sub Button11_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button11.Click
 
-        SaveRecordingInfoFromCheckedListBoxTODRS10DATABASE(CheckedListBox1)
-
-    End Sub
 
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click
         Application.Exit()
