@@ -19,43 +19,43 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
-        Me.TabPage2 = New System.Windows.Forms.TabPage
-        Me.Button13 = New System.Windows.Forms.Button
-        Me.Button12 = New System.Windows.Forms.Button
-        Me.Button10 = New System.Windows.Forms.Button
-        Me.Button11 = New System.Windows.Forms.Button
-        Me.cbViaWebService = New System.Windows.Forms.CheckBox
-        Me.Button9 = New System.Windows.Forms.Button
-        Me.Button8 = New System.Windows.Forms.Button
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox
-        Me.Button7 = New System.Windows.Forms.Button
-        Me.Button6 = New System.Windows.Forms.Button
-        Me.Button5 = New System.Windows.Forms.Button
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox
-        Me.Button4 = New System.Windows.Forms.Button
-        Me.Button3 = New System.Windows.Forms.Button
-        Me.TabPage1 = New System.Windows.Forms.TabPage
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker
-        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.TextBox1 = New System.Windows.Forms.TextBox
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.TabControl1 = New System.Windows.Forms.TabControl
-        Me.TabPage3 = New System.Windows.Forms.TabPage
-        Me.TextBox2 = New System.Windows.Forms.TextBox
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.components = New System.ComponentModel.Container()
+        Me.HelpProvider1 = New System.Windows.Forms.HelpProvider()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button13 = New System.Windows.Forms.Button()
+        Me.Button12 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.Button11 = New System.Windows.Forms.Button()
+        Me.cbViaWebService = New System.Windows.Forms.CheckBox()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button8 = New System.Windows.Forms.Button()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Button7 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.WebBrowser1 = New System.Windows.Forms.WebBrowser()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tmrAUTOEXEC = New System.Windows.Forms.Timer(Me.components)
-        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel
         Me.StatusStrip1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -77,6 +77,14 @@ Partial Class Form1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
         Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(0, 17)
+        '
+        'ToolStripStatusLabel2
+        '
+        Me.ToolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(637, 17)
+        Me.ToolStripStatusLabel2.Spring = True
+        Me.ToolStripStatusLabel2.Text = "ex"
         '
         'TabPage2
         '
@@ -206,8 +214,8 @@ Partial Class Form1
         'CheckedListBox1
         '
         Me.CheckedListBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.CheckedListBox1.FormattingEnabled = True
         Me.CheckedListBox1.Location = New System.Drawing.Point(8, 76)
         Me.CheckedListBox1.Name = "CheckedListBox1"
@@ -257,11 +265,12 @@ Partial Class Form1
         'WebBrowser1
         '
         Me.WebBrowser1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.WebBrowser1.Location = New System.Drawing.Point(3, 91)
         Me.WebBrowser1.MinimumSize = New System.Drawing.Size(20, 20)
         Me.WebBrowser1.Name = "WebBrowser1"
+        Me.WebBrowser1.ScriptErrorsSuppressed = True
         Me.WebBrowser1.Size = New System.Drawing.Size(643, 259)
         Me.WebBrowser1.TabIndex = 0
         '
@@ -293,8 +302,8 @@ Partial Class Form1
         'TabControl1
         '
         Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
@@ -344,14 +353,14 @@ Partial Class Form1
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(92, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'ToolsToolStripMenuItem
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem.Text = "&Tools"
         '
         'OptionsToolStripMenuItem
@@ -375,14 +384,6 @@ Partial Class Form1
         '
         'tmrAUTOEXEC
         '
-        '
-        'ToolStripStatusLabel2
-        '
-        Me.ToolStripStatusLabel2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
-        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(606, 17)
-        Me.ToolStripStatusLabel2.Spring = True
-        Me.ToolStripStatusLabel2.Text = "ex"
         '
         'Form1
         '
