@@ -106,7 +106,7 @@ Partial Class DisplayOE1
 
     Protected Sub TestDataGenerate_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button8.Click
         ' generate test data 
-        myOe1s = ReturnTestData(20)
+        myOe1s = ReturnTestData(20, tbLength.Text)
         Session("myoe1") = myOe1s
         FilterCheckBox_CheckedChanged(Nothing, Nothing)
     End Sub
@@ -116,5 +116,7 @@ Partial Class DisplayOE1
         Label1.Text = DisplayWSredirection()
     End Sub
 
-
+    Protected Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        DeleteALLrecordingsINDRS20DATABASE(True)
+    End Sub
 End Class

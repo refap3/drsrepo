@@ -1,6 +1,6 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.16
+$BuildNumber=1.19
 $secondsBefore=5 # adjust recording time range ...
 $secondsAfter=30
 $BrowserName = "opera"

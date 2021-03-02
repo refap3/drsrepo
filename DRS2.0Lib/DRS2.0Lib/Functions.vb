@@ -565,7 +565,7 @@ Public Module Functions
         Return ws
     End Function
 
-    Public Function ReturnTestData(ByVal numberOfItems As Integer) As OE1Sendung()
+    Public Function ReturnTestData(ByVal numberOfItems As Integer, Optional LengthInMinutes As Integer = 10) As OE1Sendung()
         'generate some Test data         
         Dim outOE1s() As OE1Sendung
         outOE1s = Array.CreateInstance(GetType(OE1Sendung), 0)
@@ -576,9 +576,10 @@ Public Module Functions
             Dim newOe1 As OE1Sendung
             newOe1 = New OE1Sendung(someDate.ToString("HH:mm"), someDate.ToString("yyyy-MM-dd"), "test", "prog " & i.ToString("000") & "-min-" & someDate.ToString("mm"), "no more info", "", "TESTTYPE")
             ' use the SAME end time this will result in short recordings only overlay time interval is used for recording (+5 / +30 secs) ...
+            someDate = someDate.AddMinutes(LengthInMinutes)
             newOe1.SetEndTime(someDate.ToString("yyyy-MM-dd"), someDate.ToString("HH:mm"))
+            'someDate = someDate.AddMinutes(1) ' one minute break between 2 sendungen 
 
-            someDate = someDate.AddMinutes(1)
 
             Dim tmp As Integer = newOe1.Duration 'debug helper 
             Array.Resize(outOE1s, outOE1s.Length + 1)

@@ -20,6 +20,7 @@
     <asp:CheckBox ID="CheckBox1" runat="server" Text="Filter on" AutoPostBack="True" Checked="True" />&nbsp;&nbsp;
     &nbsp;<br />
     <strong>recording</strong>: &nbsp;
+    <asp:Button ID="Button11" runat="server" Text="DB-DeleteALL" BackColor="Red" ForeColor="#FFFFCC" ToolTip="CAUTION!!" />&nbsp;
     <asp:Button ID="Button3" runat="server" Text="Append" />&nbsp;
     <asp:Button ID="Button2" runat="server" Text="writ SCHED" />&nbsp;
     <asp:CheckBox
@@ -30,8 +31,9 @@
     ------------------------------------------------------------------------------------<br />
     <br />
     <asp:Button ID="Button10" runat="server" Text="App and  >>" /><br />
-    <strong>Other: &nbsp; &nbsp;<asp:Button
-        ID="Button8" runat="server" Text="TESTdata" />
+    <strong>Other: &nbsp; &nbsp;
+        <asp:Button ID="Button8" runat="server" Text="TESTdata" />
+        <asp:TextBox ID="tbLength" runat="server" Text="1" />
         <asp:Button ID="Button9" runat="server"
             Text="Display WS redir" />
         <asp:LinkButton ID="LinkButton1" runat="server">2 Oe1 Web</asp:LinkButton><br />
