@@ -1,6 +1,6 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.19
+$BuildNumber=1.24
 # Setup adjust recording time range ...
 # Grace: accept if record start is before now - grace
 # Before: Begin recording after before seconds, ie. 5: 5 secs later 
@@ -12,12 +12,14 @@ $secondsAfter=30
 
 
 $BrowserName = "opera"
+$schedFile="c:\temp\scheduled.csv"
 while ($true) # use another outer loop for break inside inner loop 
 {
   while ($true)
   {
     "$BuildNumber :refresh SCHEDULE file "
-    $wmrecs =Import-Csv c:\temp\scheduled.csv -Delimiter ";" | `
+    if ((Test-Path $schedFile) -eq $false) { echo "no schedule found, wait & retry";sleep 10 ; break}
+    $wmrecs =Import-Csv $schedFile -Delimiter ";" | `
     Select @{Name="RecordingTime";Expression={(Get-date $_.RecordingTime)}}, @{Name="EndTime";Expression={(get-date $_.EndTime)}}, @{Name="Length";Expression={[int32]$_.Length}}, Filename, Link  | where Recordingtime -gt ((get-date).AddSeconds($secondsGrace)) | sort Recordingtime 
     #  if ($wmrecs.Length -gt 0 ) {echo "$($wmrecs.length) recording(s) ... Next @ $($wmrecs[0].RecordingTime) to $($wmrecs[0].EndTime.Hour.ToString('00')):$($wmrecs[0].EndTime.Minute.ToString('00')) - $($wmrecs[0].FileName)" }
   
@@ -35,10 +37,18 @@ while ($true) # use another outer loop for break inside inner loop
  
       if ($ssecs -gt 0 ) {sleep  $ssecs } # sleep until start time 
       # compute maximum sec after recording ... Problem if next Recording starts @ this.EndTime ....
-      if ($wmrecs.length -gt 1) { if ($nextRec.EndTime -eq $wmrecs[1].RecordingTime){}$secondsAfter=0}
-      echo "recording NOW: $($nextRec.RecordingTime) to $($nextRec.EndTime.Hour.ToString('00')):$($nextRec.EndTime.Minute.ToString('00')) - $($nextRec.FileName)"
+      $secondsAfterUsed=$secondsAfter
+      if ($wmrecs.length -gt 1) 
+      { 
+        if ($nextRec.EndTime -eq $wmrecs[1].RecordingTime)
+        {
+          $secondsAfterUsed=0
+          # echo "end: $($nextRec.EndTime) nextrec: $($wmrecs[1].RecordingTime)"
+        }
+      }
+      echo "recording NOW: $($nextRec.RecordingTime) to $($nextRec.EndTime.Hour.ToString('00')):$($nextRec.EndTime.Minute.ToString('00')) - $($nextRec.FileName) with slack: $secondsAfterUsed"
       start $nextRec.Link
-      sleep ((($nextRec.EndTime) - (get-date)).totalseconds + $secondsAfter) # sleep until end time 
+      sleep ((($nextRec.EndTime) - (get-date)).totalseconds + $secondsAfterUsed) # sleep until end time 
       
       ps $BrowserName|kill -ErrorAction SilentlyContinue
       sleep 3
@@ -50,7 +60,7 @@ while ($true) # use another outer loop for break inside inner loop
         $lastf=$files[0]
         Rename-Item -Path $lastf.FullName -NewName "$($nextRec.FileName).mp3"
       }
-      else {echo "No output mp3 file found ... !"}
+      else {Write-Host -ForegroundColor Red "No output mp3 file found ... !"}
     
       sleep 2
     }
