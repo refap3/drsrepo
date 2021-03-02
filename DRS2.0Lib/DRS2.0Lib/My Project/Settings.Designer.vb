@@ -106,7 +106,7 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("http://r-schmidt.com/oe1.html")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://oe1.orf.at/player/live")>  _
         Public ReadOnly Property DRSRECORDINGLINK() As String
             Get
                 Return CType(Me("DRSRECORDINGLINK"),String)
