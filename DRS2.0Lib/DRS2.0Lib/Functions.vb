@@ -458,7 +458,7 @@ Public Module Functions
             Try
                 outText = My.Computer.FileSystem.ReadAllText(schedFileName)
             Catch ex As Exception
-                outText = vbCrLf
+                outText = "" ' no idead what the purpose of this is ??
             End Try
             outText &= schedContent
             My.Computer.FileSystem.WriteAllText(schedFileName, outText, False, New System.Text.ASCIIEncoding)
