@@ -4,6 +4,6 @@
     <asp:Button ID="Button2" runat="server" Text="Save" />
     ONLY WORKS LOCALLY !! NOT VIA WEBSERVICE<br />
     <br />
-    <asp:TextBox ID="TextBox1" runat="server" Height="378px" TextMode="MultiLine" Width="652px"></asp:TextBox>
+    <asp:TextBox ID="TextBox1" runat="server" Height="378px" TextMode="MultiLine" Width="80%" Wrap="False"></asp:TextBox>
 </asp:Content>
 

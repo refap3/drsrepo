@@ -4,5 +4,5 @@
     <asp:Button ID="Button1" runat="server" Text="Load" />&nbsp;
     <asp:Button ID="Button2" runat="server" Text="Clear Log" />only via WEBSERVICE !<br />
         <asp:TextBox ID="TextBox1" runat="server" Height="378px" TextMode="MultiLine"
-            Width="652px"></asp:TextBox>
+            Width="80%" Wrap="False"></asp:TextBox>
 </asp:Content>

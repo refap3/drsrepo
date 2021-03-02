@@ -5,6 +5,6 @@
     <asp:Button ID="Button2" runat="server" Text="Save" />
     ALWAYs via WebService !<br />
     <br />
-    <asp:TextBox ID="TextBox1" runat="server" Height="589px" TextMode="MultiLine" Width="747px" ReadOnly="True"></asp:TextBox>
+    <asp:TextBox ID="TextBox1" runat="server" Height="577px" TextMode="MultiLine" Width="79%" ReadOnly="True" Wrap="False"></asp:TextBox>
 </asp:Content>
 
