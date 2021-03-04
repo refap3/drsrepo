@@ -1,6 +1,6 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.34
+$BuildNumber=1.35
 # Setup adjust recording time range ...
 # Grace: accept if record start is before now - grace
 # Before: Begin recording after before seconds, ie. 5: 5 secs later 
@@ -53,7 +53,7 @@ Try
       Write-DbgView "$BuildNumber :refresh SCHEDULE file "
       if ((Test-Path $schedFile) -eq $false) { Write-DbgView "no schedule found, wait & retry";sleep 10 ; break}
       $wmrecs =Import-Csv $schedFile -Delimiter ";" | `
-      Select @{Name="RecordingTime";Expression={(Get-date $_.RecordingTime)}}, @{Name="EndTime";Expression={(get-date $_.EndTime)}}, @{Name="Length";Expression={[int32]$_.Length}}, Filename, Link  | where Recordingtime -gt ((get-date).AddSeconds($secondsGrace)) | sort Recordingtime 
+      Select @{Name="RecordingTime";Expression={(Get-date $_.RecordingTime)}}, @{Name="EndTime";Expression={(get-date $_.EndTime)}}, @{Name="Length";Expression={[int32]$_.Length}}, Filename, Link, @{Name="AirTime";Expression={(Get-date $_.AirTime)}} | where Recordingtime -gt ((get-date).AddSeconds($secondsGrace)) | sort Recordingtime 
       #  if ($wmrecs.Length -gt 0 ) {echo "$($wmrecs.length) recording(s) ... Next @ $($wmrecs[0].RecordingTime) to $($wmrecs[0].EndTime.Hour.ToString('00')):$($wmrecs[0].EndTime.Minute.ToString('00')) - $($wmrecs[0].FileName)" }
   
       # find the 1st recordable entry  and display it, focc off iff nothing ....
@@ -86,12 +86,17 @@ Try
         ps $BrowserName -ErrorAction SilentlyContinue|kill -ErrorAction SilentlyContinue
         sleep 3
 
-        # rename out file 
+        # rename and process DateTime Attributes on out file
         $files=ls c:\temp\*.mp3|sort LastWriteTime -Descending
         if ($files -ne $null)
         {
           $lastf=$files[0]
+          # process AirTime 
+          $lastf.CreationTime=$nextRec.AirTime
+          $lastf.LastWriteTime=$lastf.CreationTime
+          
           Rename-Item -Path $lastf.FullName -NewName "$($nextRec.FileName).mp3"
+          
         }
         else {Write-Host -ForegroundColor Red "No output mp3 file found ... !"}
     
