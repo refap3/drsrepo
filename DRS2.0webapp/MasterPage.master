@@ -5,6 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>DRS 3.1 - the web solution!</title>
+    <link rel="Shortcut Icon" href="favicon.ico" type="image/x-icon" />
 </head>
 <body>
     <form id="form1" runat="server">

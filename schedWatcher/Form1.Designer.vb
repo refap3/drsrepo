@@ -19,18 +19,18 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Me.ListBox1 = New System.Windows.Forms.ListBox
-        Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher
-        Me.tmrArchive = New System.Windows.Forms.Timer(Me.components)
-        Me.tmrClockSync = New System.Windows.Forms.Timer(Me.components)
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
-        Me.tslbLocalTime = New System.Windows.Forms.ToolStripStatusLabel
-        Me.tslbInternetTime = New System.Windows.Forms.ToolStripStatusLabel
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
-        Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ArchiveNOWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ClockSyncNOWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
+        Me.tmrArchive = New System.Windows.Forms.Timer()
+        Me.tmrClockSync = New System.Windows.Forms.Timer()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.tslbLocalTime = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.tslbInternetTime = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ArchiveNOWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClockSyncNOWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -39,8 +39,8 @@ Partial Class Form1
         'ListBox1
         '
         Me.ListBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ListBox1.FormattingEnabled = True
         Me.ListBox1.Location = New System.Drawing.Point(0, 26)
         Me.ListBox1.Name = "ListBox1"
@@ -94,7 +94,7 @@ Partial Class Form1
         '
         Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchiveNOWToolStripMenuItem, Me.ClockSyncNOWToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
-        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem.Text = "Tools"
         '
         'ArchiveNOWToolStripMenuItem
@@ -117,6 +117,7 @@ Partial Class Form1
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.ListBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
         Me.Text = "schedWatcher"

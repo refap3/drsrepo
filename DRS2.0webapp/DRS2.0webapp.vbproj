@@ -90,6 +90,7 @@
     <Content Include="aa.txt" />
     <Content Include="App_Data\DRS2.0.mdb" />
     <Content Include="App_Data\Exclude.txt" />
+    <Content Include="favicon.ico" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

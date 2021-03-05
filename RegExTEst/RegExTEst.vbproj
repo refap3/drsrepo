@@ -58,6 +58,9 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icons8-Windows-8-Science-Math.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -133,6 +136,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons8-Windows-8-Science-Math.ico" />
     <Content Include="Reference INFO\oe1_ORF_at - before 2017.htm" />
     <Content Include="Reference INFO\oe1_ORF_at.htm" />
     <Content Include="Reference INFO\oe1_ORF_at_detail.htm" />
