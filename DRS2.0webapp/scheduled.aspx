@@ -1,6 +1,6 @@
 <%@ Page Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" Inherits="DRS2._0webapp.scheduled" Title="Schedule" Codebehind="scheduled.aspx.vb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:Button ID="Button1" runat="server" Text="Load" />
+    <asp:Button ID="Button1" runat="server" Text="Load" AccessKey="L" ToolTip="L(oad)" />
     &nbsp;&nbsp;
     <asp:Button ID="Button2" runat="server" Text="Save" />
     ALWAYs via WebService !<br />

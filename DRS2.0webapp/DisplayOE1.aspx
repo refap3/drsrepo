@@ -12,17 +12,17 @@
         <WeekendDayStyle BackColor="#FFFFCC" />
     </asp:Calendar>
     <strong>navigating</strong>:
-    <asp:Button ID="Button4" runat="server" Text="Today" />&nbsp;
-    <asp:Button ID="Button5" runat="server" Text="<<" />&nbsp;
-    <asp:Button ID="Button6" runat="server" Text=">>" />
+    <asp:Button ID="Button4" runat="server" Text="Today" AccessKey="T" ToolTip="T(oday)" />&nbsp;
+    <asp:Button ID="Button5" runat="server" Text="<<" AccessKey="p" ToolTip="P(reiviuos)" />&nbsp;
+    <asp:Button ID="Button6" runat="server" Text=">>" AccessKey="n" ToolTip="N(ext)" />
     &nbsp;
     &nbsp; &nbsp;
     <asp:CheckBox ID="CheckBox1" runat="server" Text="Filter on" AutoPostBack="True" Checked="True" />&nbsp;&nbsp;
     &nbsp;<br />
     <strong>recording</strong>: &nbsp;
     <asp:Button ID="Button11" runat="server" Text="DB-DeleteALL" BackColor="Red" ForeColor="#FFFFCC" ToolTip="CAUTION!!" />&nbsp;
-    <asp:Button ID="Button3" runat="server" Text="Append" />&nbsp;
-    <asp:Button ID="Button2" runat="server" Text="writ SCHED" />&nbsp;
+    <asp:Button ID="Button3" runat="server" Text="Append" AccessKey="A" ToolTip="A(ppend)" />&nbsp;
+    <asp:Button ID="Button2" runat="server" Text="writ SCHED" AccessKey="S" ToolTip="(write)S(chedule)" />&nbsp;
     <asp:CheckBox
         ID="cbViaWebService" runat="server" Checked="True" Text="Via WebService" />&nbsp;<br />
     -----------------------------------------------------------------------------------<br />
@@ -30,7 +30,7 @@
     </asp:CheckBoxList><br />
     ------------------------------------------------------------------------------------<br />
     <br />
-    <asp:Button ID="Button10" runat="server" Text="App and  >>" /><br />
+    <asp:Button ID="Button10" runat="server" Text="App and  >>" AccessKey="X" ToolTip="(append&amp;ne)X(t)" /><br />
     <strong>Other: &nbsp; &nbsp;
         <asp:Button ID="Button8" runat="server" Text="TESTdata" />
         <asp:TextBox ID="tbLength" runat="server" Text="1" />
