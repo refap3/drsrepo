@@ -19,11 +19,12 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.FileSystemWatcher1 = New System.IO.FileSystemWatcher()
-        Me.tmrArchive = New System.Windows.Forms.Timer()
-        Me.tmrClockSync = New System.Windows.Forms.Timer()
+        Me.tmrArchive = New System.Windows.Forms.Timer(Me.components)
+        Me.tmrClockSync = New System.Windows.Forms.Timer(Me.components)
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.tslbLocalTime = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tslbInternetTime = New System.Windows.Forms.ToolStripStatusLabel()
@@ -31,6 +32,7 @@ Partial Class Form1
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ArchiveNOWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClockSyncNOWToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
@@ -92,7 +94,7 @@ Partial Class Form1
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchiveNOWToolStripMenuItem, Me.ClockSyncNOWToolStripMenuItem})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ArchiveNOWToolStripMenuItem, Me.ClockSyncNOWToolStripMenuItem, Me.OptionsToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.ToolsToolStripMenuItem.Text = "Tools"
@@ -108,6 +110,12 @@ Partial Class Form1
         Me.ClockSyncNOWToolStripMenuItem.Name = "ClockSyncNOWToolStripMenuItem"
         Me.ClockSyncNOWToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
         Me.ClockSyncNOWToolStripMenuItem.Text = "ClockSync NOW"
+        '
+        'OptionsToolStripMenuItem
+        '
+        Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(161, 22)
+        Me.OptionsToolStripMenuItem.Text = "Options"
         '
         'Form1
         '
@@ -141,5 +149,5 @@ Partial Class Form1
     Friend WithEvents ToolsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ArchiveNOWToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ClockSyncNOWToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-
+    Friend WithEvents OptionsToolStripMenuItem As ToolStripMenuItem
 End Class

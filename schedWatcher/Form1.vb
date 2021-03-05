@@ -221,5 +221,7 @@ Public Class Form1
         tmrClockSync_Tick(sender, e)
     End Sub
 
-
+    Private Sub OptionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OptionsToolStripMenuItem.Click
+        My.Forms.Settings.ShowDialog()
+    End Sub
 End Class
