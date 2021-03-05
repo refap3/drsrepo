@@ -224,4 +224,9 @@ Public Class Form1
     Private Sub OptionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OptionsToolStripMenuItem.Click
         My.Forms.Settings.ShowDialog()
     End Sub
+
+
+    Private Sub ListBox1_DoubleClick(sender As Object, e As EventArgs) Handles ListBox1.DoubleClick
+        ListBox1.Items.Clear()
+    End Sub
 End Class
