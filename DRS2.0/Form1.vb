@@ -173,11 +173,24 @@ Public Class Form1
                     Threading.Thread.Sleep(5000)
                 End Try
             Loop Until webConnect
+
+            ToolStripStatusLabel1.Text = "Connected."
+
+            ' delete the old focc
+            DELETEallWMrecordings_Click(sender, e)
+            ToolStripStatusLabel1.Text = "Deleted old stuff."
+            My.Application.DoEvents()
+
             ' filter - go to day toggle append 
             CheckBox1.Checked = True ' filter 
             DateTimePicker1.Value = Now ' today
             ToggleButton_Click(sender, e) ' toggle all 
             Record_Click(sender, e) ' record to DB 
+            ToolStripStatusLabel1.Text = "Day saved: " & DateTimePicker1.Value.Date
+            My.Application.DoEvents()
+            'do a save schedule here too in case of crash
+            INITRecord_Click(sender, e) ' write schedule 
+            ToolStripStatusLabel1.Text = "First SCHEDULE WRITTEN." & DateTimePicker1.Value.Date
             My.Application.DoEvents()
             ' now process next days ...
             For i As Integer = 1 To My.Settings.DaysAheadInAutoExec - 1
@@ -185,14 +198,18 @@ Public Class Form1
                 NextDay_Click(sender, e)  ' next day 
                 ToggleButton_Click(sender, e) ' toggle all 
                 Record_Click(sender, e) ' record to DB 
+                ToolStripStatusLabel1.Text = "Day saved: " & DateTimePicker1.Value.Date
+                My.Application.DoEvents()
+                ' wite schedule in between 
+                INITRecord_Click(sender, e) ' write schedule 
+                ToolStripStatusLabel1.Text = "SCHEDULE WRITTEN." & DateTimePicker1.Value.Date
                 My.Application.DoEvents()
 
             Next
 
-            ' finally write schedule 
-
-            INITRecord_Click(sender, e) ' write schedule 
+            ToolStripStatusLabel1.Text = "ALL COMPLETE!"
             My.Application.DoEvents()
+
 
         End If
     End Sub
