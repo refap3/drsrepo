@@ -19,7 +19,7 @@
             <RowStyle BackColor="#E3EAEB" />
             <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
         </asp:GridView>
-        <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="~/App_Data/DRS2.0.mdb" DeleteCommand="DELETE FROM [DRS] WHERE [Id] = ?" InsertCommand="INSERT INTO [DRS] ([Id], [RecordingTime], [MP3OutFileName], [StatusDone]) VALUES (?, ?, ?, ?)" SelectCommand="SELECT [Id], [RecordingTime], [MP3OutFileName], [StatusDone] FROM [DRS] where recordingtime &lt; now() order by recordingtime desc" UpdateCommand="UPDATE [DRS] SET [RecordingTime] = ?, [MP3OutFileName] = ?, [StatusDone] = ? WHERE [Id] = ?">
+        <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="~/App_Data/DRS2.0.mdb" DeleteCommand="DELETE FROM [DRS] WHERE [Id] = ?" InsertCommand="INSERT INTO [DRS] ([Id], [RecordingTime], [MP3OutFileName], [StatusDone]) VALUES (?, ?, ?, ?)" SelectCommand="SELECT [Id], [RecordingTime], [MP3OutFileName], [StatusDone] FROM [DRS]  where [RecordingTime] < now() order by [RecordingTime] DESC" UpdateCommand="UPDATE [DRS] SET [RecordingTime] = ?, [MP3OutFileName] = ?, [StatusDone] = ? WHERE [Id] = ?">
             <DeleteParameters>
                 <asp:Parameter Name="Id" Type="Int32" />
             </DeleteParameters>
