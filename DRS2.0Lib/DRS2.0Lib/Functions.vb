@@ -608,4 +608,17 @@ Public Module Functions
         End If
         Return strReturn
     End Function
+    Public Function deleteALlBeforeID(ByVal ID As Integer) As String
+        Dim strReturn As String = ""
+        Dim ta As DRSDataSetTableAdapters.DRS20TableAdapter = getDRS20TableAdapter()
+        Dim res = ta.DeleteAllBeforeID(ID)
+        If res >= 1 Then
+            strReturn = "SUCCES delete before id: " & ID & " Deleted " & res & " rows."
+        Else
+            strReturn = "Something went WRONG  - Deleted " & res & " rows."
+        End If
+        Return strReturn
+    End Function
+
+
 End Module

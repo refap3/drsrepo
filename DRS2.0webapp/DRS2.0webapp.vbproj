@@ -91,6 +91,7 @@
     <Content Include="App_Data\DRS2.0.mdb" />
     <Content Include="App_Data\Exclude.txt" />
     <Content Include="DbgViewer.aspx" />
+    <Content Include="DeleteBeforeID.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="History.aspx" />
     <Content Include="Web.config" />
@@ -109,6 +110,13 @@
     <Compile Include="Default.aspx.vb">
       <SubType>ASPXCodebehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteBeforeID.aspx.designer.vb">
+      <DependentUpon>DeleteBeforeID.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteBeforeID.aspx.vb">
+      <DependentUpon>DeleteBeforeID.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="DisplayOE1.aspx.designer.vb">
       <DependentUpon>DisplayOE1.aspx</DependentUpon>
