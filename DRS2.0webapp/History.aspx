@@ -6,7 +6,7 @@
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Id" DataSourceID="AccessDataSource1" EnableModelValidation="True" ForeColor="#333333" GridLines="None" PageSize="30">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:CommandField ShowEditButton="True" />
+                <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
                 <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
                 <asp:BoundField DataField="RecordingTime" HeaderText="RecordingTime" SortExpression="RecordingTime" />
                 <asp:BoundField DataField="MP3OutFileName" HeaderText="MP3OutFileName" SortExpression="MP3OutFileName" />
