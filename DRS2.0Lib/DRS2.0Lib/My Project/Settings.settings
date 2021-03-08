@@ -22,8 +22,8 @@
     <Setting Name="DRSRECORDINGLINK" Type="System.String" Scope="Application">
       <Value Profile="(Default)">https://oe1.orf.at/player/live</Value>
     </Setting>
-    <Setting Name="Setting" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+    <Setting Name="DBGVIEWERFILENAME" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">c:\debuglog\dbgview.log</Value>
     </Setting>
   </Settings>
 </SettingsFile>

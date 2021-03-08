@@ -105,10 +105,10 @@ Namespace My
         
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public ReadOnly Property Setting() As String
+         Global.System.Configuration.DefaultSettingValueAttribute("c:\debuglog\dbgview.log")>  _
+        Public ReadOnly Property DBGVIEWERFILENAME() As String
             Get
-                Return CType(Me("Setting"),String)
+                Return CType(Me("DBGVIEWERFILENAME"),String)
             End Get
         End Property
     End Class

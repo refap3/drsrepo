@@ -10,7 +10,7 @@
 <body>
     <form id="form1" runat="server">
     <div title="DRS 2.0 - the master radio recording web">
-        <a href="Filter.aspx">Filter</a> &nbsp;<a href="scheduled.aspx">Schedule</a>&nbsp;<a href="RecordLog.aspx">RecordLog</a>
+        <a href="Filter.aspx">Filter</a> &nbsp;<a href="scheduled.aspx">Schedule</a>&nbsp;<a href="RecordLog.aspx">RecordLog</a>&nbsp<a href="dbgviewer.aspx">DbgViewer</a>
         <a href="DisplayOE1.aspx">OE1</a>&nbsp;<a href="Editeur.aspx">Editeur</a>&nbsp;<a href="http://drs.deprec.mine.nu">downDown</a><br />
         ------------------------------------------------------------------------------------------<br />
         <asp:contentplaceholder id="ContentPlaceHolder1" runat="server">

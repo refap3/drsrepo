@@ -507,6 +507,10 @@ Public Module Functions
         Return My.Settings.SCHEDULETEXTFILE
     End Function
 
+    Public Function getDBGVIEWERFILENAME() As String
+        Return My.Settings.DBGVIEWERFILENAME
+    End Function
+
     Public Function getDRS20DATABASEPATH() As String
         ' this will return the path on the WEB Server not neccessarily on the WM recorder running site !
         Dim ws As WSfileacc.WSFileAccess = GetWsReferenceFileHoldingHost()

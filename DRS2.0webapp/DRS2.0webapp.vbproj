@@ -90,10 +90,18 @@
     <Content Include="aa.txt" />
     <Content Include="App_Data\DRS2.0.mdb" />
     <Content Include="App_Data\Exclude.txt" />
+    <Content Include="DbgViewer.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbgViewer.aspx.designer.vb">
+      <DependentUpon>DbgViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DbgViewer.aspx.vb">
+      <DependentUpon>DbgViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
