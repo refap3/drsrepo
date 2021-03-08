@@ -141,12 +141,13 @@ Public Class Form1
         For Each fil As FileInfo In di.GetFiles
             If (fil.Extension).ToLower = mediaFILEEXTENSION Then
                 addListBoxInfo("try MOV media fil: " & fil.Name)
-                Dim yr As String, mo As String, dy As String, hh As String, mm As String
+                Dim yr As String, mo As String, dy As String, hh As String, mm As String, ct As Date
                 yr = fil.CreationTime.Year.ToString
                 mo = fil.CreationTime.Month.ToString("00")
                 dy = fil.CreationTime.Day.ToString("00")
                 hh = fil.CreationTime.Hour.ToString("00")
                 mm = fil.CreationTime.Minute.ToString("00")
+                ct = fil.CreationTime
 
                 If My.Settings.IncludeHHMMinFilename Then
                     dy += "-" & hh & mm
@@ -169,6 +170,8 @@ Public Class Form1
                     fil.MoveTo(dstPath)    ' 9.1.18 it IS already MP3 -- !!
                     addListBoxInfo(" MOVEed ..." & dstPath)
                     AppendToRecordLog("OK: " & dstPath)
+                    Dim dbUpdateResult = storeSuccessRecording(ct)
+                    Debug.WriteLine(dbUpdateResult)
                 Catch ex As Exception
                     addListBoxInfo("MOV faild- maybe still OK: " & ex.Message)
                 End Try

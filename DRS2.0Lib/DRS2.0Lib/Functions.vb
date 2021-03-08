@@ -595,4 +595,17 @@ Public Module Functions
         '        Return str.Replace("ä", "ae").Replace("ö", "oe").Replace("ü", "ue").Replace("Ä", "Ae").Replace("Ö", "Oe").Replace("Ü", "Ue").Replace("ß", "ss")
         Return DRSCorrectFileNameChars(str) ' bloody focc had left Fragezeichen over 
     End Function
+    ' Update Status Done for successfull recordings 
+
+    Public Function storeSuccessRecording(ByVal RecordingTime As DateTime) As String
+        Dim strReturn As String = ""
+        Dim ta As DRSDataSetTableAdapters.DRS20TableAdapter = getDRS20TableAdapter()
+        Dim res = ta.UpdateSucces(RecordingTime)
+        If res = 1 Then
+            strReturn = "SUCCES RECORDING - Updated " & res & " rows."
+        Else
+            strReturn = "Something went WRONG  - Updated " & res & " rows."
+        End If
+        Return strReturn
+    End Function
 End Module
