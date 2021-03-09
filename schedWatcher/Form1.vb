@@ -150,6 +150,8 @@ Public Class Form1
                 hh = fil.CreationTime.Hour.ToString("00")
                 mm = fil.CreationTime.Minute.ToString("00")
                 ct = fil.CreationTime
+                ct = fil.LastWriteTime
+
 
                 If My.Settings.IncludeHHMMinFilename Then
                     dy += "-" & hh & mm
