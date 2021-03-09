@@ -8,6 +8,8 @@ Public Class Form1
     Dim t As Threading.Thread
     Delegate Sub SetTextCallback(ByVal [text] As String)
     Dim mediaFILEEXTENSION = My.Settings.renameFILEEXTENSION.ToLower
+    Dim screenshotFILEEXTENSION = My.Settings.screenshotFILEEXTENSION.ToLower
+
 
 
 
@@ -139,7 +141,7 @@ Public Class Form1
         ' come here at timer tick and try to archive some files 
         Dim di As New DirectoryInfo(My.Settings.asfWATCHdirectory)
         For Each fil As FileInfo In di.GetFiles
-            If (fil.Extension).ToLower = mediaFILEEXTENSION Then
+            If ((fil.Extension).ToLower = mediaFILEEXTENSION) Or ((fil.Extension).ToLower = screenshotFILEEXTENSION) Then
                 addListBoxInfo("try MOV media fil: " & fil.Name)
                 Dim yr As String, mo As String, dy As String, hh As String, mm As String, ct As Date
                 yr = fil.CreationTime.Year.ToString

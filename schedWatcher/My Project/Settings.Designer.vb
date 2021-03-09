@@ -137,6 +137,18 @@ Namespace My
                 Me("IncludeHHMMinFilename") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute(".png")>  _
+        Public Property screenshotFILEEXTENSION() As String
+            Get
+                Return CType(Me("screenshotFILEEXTENSION"),String)
+            End Get
+            Set
+                Me("screenshotFILEEXTENSION") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

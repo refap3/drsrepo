@@ -23,5 +23,8 @@
     <Setting Name="IncludeHHMMinFilename" Type="System.String" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="screenshotFILEEXTENSION" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.png</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
