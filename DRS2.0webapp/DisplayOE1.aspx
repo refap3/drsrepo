@@ -17,8 +17,8 @@
     <asp:Button ID="Button6" runat="server" Text=">>" AccessKey="n" ToolTip="N(ext)" />
     &nbsp;
     &nbsp; &nbsp;
-    <asp:CheckBox ID="CheckBox1" runat="server" Text="Filter on" AutoPostBack="True" Checked="True" />&nbsp;&nbsp;
-    &nbsp;<br />
+    <asp:CheckBox ID="CheckBox1" runat="server" Text="Filter on" AutoPostBack="True" Checked="True" />&nbsp;&nbsp;<asp:CheckBox ID="ArchiveCheckBox" runat="server" AutoPostBack="True" Checked="True" Text="Hide Archive" />
+&nbsp;<br />
     <strong>recording</strong>: &nbsp;
     <asp:Button ID="Button11" runat="server" Text="DB-DeleteALL" BackColor="Red" ForeColor="#FFFFCC" ToolTip="CAUTION!!" />&nbsp;
     <asp:Button ID="Button3" runat="server" Text="Append" AccessKey="A" ToolTip="A(ppend)" />&nbsp;

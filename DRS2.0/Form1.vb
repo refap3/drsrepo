@@ -65,7 +65,7 @@ Public Class Form1
             Array.Resize(outOE1s, outOE1s.Length + 1)
             outOE1s(outOE1s.Length - 1) = thisOe1Prog
         Next
-        Dim errMsg As String = SaveRecordingInfoTODRS20DATABASE(outOE1s)
+        Dim errMsg As String = SaveRecordingInfoTODRS20DATABASE(outOE1s, My.Settings.AutoExec) ' do NOT allow early recordings if AUTOEXEC mode
         If errMsg <> "" Then ToolStripStatusLabel1.Text = " Probs with DUPLICATES!"
     End Sub
 
@@ -92,9 +92,9 @@ Public Class Form1
     Private Sub FilterCheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
         If CheckBox1.Checked Then
             Dim testFilter() = LoadFilterList(EXCLUDEFILENAME)
-            ToolStripStatusLabel1.Text = FillCheckBoxWithprogInfo(CheckedListBox1, myOe1s, testFilter)
+            ToolStripStatusLabel1.Text = FillCheckBoxWithprogInfo(My.Settings.AutoExec, CheckedListBox1, myOe1s, testFilter)
         Else
-            ToolStripStatusLabel1.Text = FillCheckBoxWithprogInfo(CheckedListBox1, myOe1s)
+            ToolStripStatusLabel1.Text = FillCheckBoxWithprogInfo(My.Settings.AutoExec, CheckedListBox1, myOe1s)
         End If
     End Sub
 

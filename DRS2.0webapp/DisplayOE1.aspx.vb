@@ -17,9 +17,9 @@ Partial Class DisplayOE1
     Private Sub FilterCheckBox_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
         If CheckBox1.Checked Then
             Dim testFilter() As String = LoadFilterList(HttpContext.Current.Server.MapPath("App_data\" & EXCLUDEFILENAME))
-            Label1.Text = FillCheckBoxWithprogInfo(CheckBoxList1, myOe1s, testFilter)
+            Label1.Text = FillCheckBoxWithprogInfo(ArchiveCheckBox.Checked, CheckBoxList1, myOe1s, testFilter)
         Else
-            Label1.Text = FillCheckBoxWithprogInfo(CheckBoxList1, myOe1s)
+            Label1.Text = FillCheckBoxWithprogInfo(ArchiveCheckBox.Checked, CheckBoxList1, myOe1s)
         End If
     End Sub
 
@@ -118,5 +118,9 @@ Partial Class DisplayOE1
 
     Protected Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         DeleteALLrecordingsINDRS20DATABASE(True)
+    End Sub
+
+    Protected Sub ArchiveCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles ArchiveCheckBox.CheckedChanged
+        FilterCheckBox_CheckedChanged(sender, e)
     End Sub
 End Class

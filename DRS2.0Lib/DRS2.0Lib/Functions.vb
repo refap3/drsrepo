@@ -237,7 +237,7 @@ Public Module Functions
         My.Computer.FileSystem.WriteAllText(getPathtoAppData() & LOGFILENAME, txt & vbCrLf, True)
     End Sub
 
-    Public Function FillCheckBoxWithprogInfo(ByVal clb As CheckedListBox, ByVal myOe1s As OE1Sendung(), ByVal filtered() As String)
+    Public Function FillCheckBoxWithprogInfo(ByVal SkipArchive As Boolean, ByVal clb As CheckedListBox, ByVal myOe1s As OE1Sendung(), ByVal filtered() As String)
         Dim sumRecordingTime As Integer = 0
         clb.Items.Clear()
         For Each oneOE1s As OE1Sendung In myOe1s
@@ -248,7 +248,9 @@ Public Module Functions
                 If skipp Then Exit For
             Next
             If Not skipp Then
-                If (Now.AddDays(-7) < oneOE1s.EndTime) Then ' 7 Tage OE1
+                Dim startTime = Now ' 7 Tage OE1 
+                If Not SkipArchive Then startTime = startTime.AddDays(-7) ' 7 Tage OE1 
+                If (startTime < oneOE1s.EndTime) Then
                     clb.Items.Add(oneOE1s, False)
                     sumRecordingTime += oneOE1s.Duration
                 End If
@@ -257,7 +259,7 @@ Public Module Functions
         Next
         Return "Duration: " & sumRecordingTime & " MB: " & sumRecordingTime / 60.0 * 30.0
     End Function
-    Public Function FillCheckBoxWithprogInfo(ByVal clb As CheckBoxList, ByVal myOe1s As OE1Sendung(), ByVal filtered() As String)
+    Public Function FillCheckBoxWithprogInfo(ByVal SkipArchive As Boolean, ByVal clb As CheckBoxList, ByVal myOe1s As OE1Sendung(), ByVal filtered() As String)
         Dim sumRecordingTime As Integer = 0
         clb.Items.Clear()
         For Each oneOE1s As OE1Sendung In myOe1s
@@ -268,7 +270,9 @@ Public Module Functions
                 If skipp Then Exit For
             Next
             If Not skipp Then
-                If (Now.AddDays(-7) < oneOE1s.EndTime) Then ' 7 Tage OE1
+                Dim startTime = Now ' 7 Tage OE1 
+                If Not SkipArchive Then startTime = startTime.AddDays(-7) ' 7 Tage OE1 
+                If (startTime < oneOE1s.EndTime) Then
                     clb.Items.Add(oneOE1s.ToString)
                     sumRecordingTime += oneOE1s.Duration
                 End If
@@ -277,13 +281,13 @@ Public Module Functions
         Next
         Return "Duration: " & sumRecordingTime & " MB: " & sumRecordingTime / 60.0 * 30.0
     End Function
-    Public Function FillCheckBoxWithprogInfo(ByVal clb As CheckedListBox, ByVal myOe1s As OE1Sendung())
+    Public Function FillCheckBoxWithprogInfo(ByVal SkipArchive As Boolean, ByVal clb As CheckedListBox, ByVal myOe1s As OE1Sendung())
         Dim dummyf() As String = Array.CreateInstance(GetType(String), 0)
-        Return FillCheckBoxWithprogInfo(clb, myOe1s, dummyf)
+        Return FillCheckBoxWithprogInfo(SkipArchive, clb, myOe1s, dummyf)
     End Function
-    Public Function FillCheckBoxWithprogInfo(ByVal clb As CheckBoxList, ByVal myOe1s As OE1Sendung())
+    Public Function FillCheckBoxWithprogInfo(ByVal SkipArchive As Boolean, ByVal clb As CheckBoxList, ByVal myOe1s As OE1Sendung())
         Dim dummyf() As String = Array.CreateInstance(GetType(String), 0)
-        Return FillCheckBoxWithprogInfo(clb, myOe1s, dummyf)
+        Return FillCheckBoxWithprogInfo(SkipArchive, clb, myOe1s, dummyf)
     End Function
 
     Public Sub SaveFilterfromCheckedListBox(ByVal clb As CheckedListBox)
@@ -296,7 +300,7 @@ Public Module Functions
     End Sub
 
 
-    Public Function SaveRecordingInfoTODRS20DATABASE(ByVal mySelectedOes1s() As OE1Sendung) As String
+    Public Function SaveRecordingInfoTODRS20DATABASE(ByVal mySelectedOes1s() As OE1Sendung, Optional SkipBeforeToday As Boolean = False) As String
         ' save to DRS 2.0 DB 
         Dim ds As New DRSDataSet
         Dim ta As DRSDataSetTableAdapters.DRS20TableAdapter = getDRS20TableAdapter()
@@ -315,7 +319,7 @@ Public Module Functions
 
             ' handle 7 Tage OE 1 here ... 
             ' V1.0 is BRUTE FORCE
-            If oe1Prog.StartTime < Now Then ' we have an archived Zendung
+            If (oe1Prog.StartTime < Now) And Not SkipBeforeToday Then ' we have an archived Zendung
                 Dim dt = earlyStartTime ' start time without seconds etc ...
                 dt = dt.Date.AddHours(dt.Hour).AddMinutes(dt.Minute)
                 rw.RecordingTime = dt.AddMinutes(10) ' TODO: must enhance logic in the future!
