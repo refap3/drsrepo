@@ -92,10 +92,12 @@ Public Module Functions
             moreInfFound = ""
 
 
-            'MEHR Link logic ...
-            mehrLink = nlink
-            mehrLink = ("http://oe1.orf.at" & mehrLink)
+            'MEHR Link logic ... this is the new 7 Tage Ö1 go back logic ...
+            ' looks Like this: "/programm/20210309/630790/Nachrichten"
+            ' we need to extract this: "/20210309/630790"
+            ' and paste it here: https://oe1.orf.at/player/20210308/630761
 
+            mehrLink = ("https://oe1.orf.at/player/" & Split(nlink, "/")(2) & "/" & Split(nlink, "/")(3))
             moreInfFound = Trim(removeControlcharsAndTagsAndSpaces(moreInfFound))
             If timFound < lastTimefound Then day = day.AddDays(1)
             lastTimefound = timFound
@@ -246,7 +248,7 @@ Public Module Functions
                 If skipp Then Exit For
             Next
             If Not skipp Then
-                If Now < oneOE1s.EndTime Then
+                If (Now.AddDays(-7) < oneOE1s.EndTime) Then ' 7 Tage OE1
                     clb.Items.Add(oneOE1s, False)
                     sumRecordingTime += oneOE1s.Duration
                 End If
@@ -266,7 +268,7 @@ Public Module Functions
                 If skipp Then Exit For
             Next
             If Not skipp Then
-                If Now < oneOE1s.EndTime Then
+                If (Now.AddDays(-7) < oneOE1s.EndTime) Then ' 7 Tage OE1
                     clb.Items.Add(oneOE1s.ToString)
                     sumRecordingTime += oneOE1s.Duration
                 End If
@@ -298,7 +300,7 @@ Public Module Functions
         ' save to DRS 2.0 DB 
         Dim ds As New DRSDataSet
         Dim ta As DRSDataSetTableAdapters.DRS20TableAdapter = getDRS20TableAdapter()
-
+        Dim earlyStartTime As Date = Now
 
         For Each oe1Prog As OE1Sendung In mySelectedOes1s
             Dim rw As DRSDataSet.DRS20Row = ds.DRS20.NewDRS20Row
@@ -310,10 +312,24 @@ Public Module Functions
                 fullMoreInfo = FindMoreInfoFromWeb(oe1Prog)
             End If
             rw.MP3OutFileName = trimToThisLength(oe1Prog.Program & fullMoreInfo, ds.DRS20.MP3OutFileNameColumn.MaxLength)
+
+            ' handle 7 Tage OE 1 here ... 
+            ' V1.0 is BRUTE FORCE
+            If oe1Prog.StartTime < Now Then ' we have an archived Zendung
+                Dim dt = earlyStartTime ' start time without seconds etc ...
+                dt = dt.Date.AddHours(dt.Hour).AddMinutes(dt.Minute)
+                rw.RecordingTime = dt.AddMinutes(10) ' TODO: must enhance logic in the future!
+                rw.WMrecorderEntry = oe1Prog.MehrLink   ' use embedded player link
+                earlyStartTime = earlyStartTime.AddMinutes(oe1Prog.Duration).AddMinutes(5) ' next possible starttime ... 
+                Debug.WriteLine("added 7 Tage OE1 Sendung @ " & rw.RecordingTime)
+            Else
+                rw.RecordingTime = oe1Prog.StartTime
+                rw.WMrecorderEntry = My.Settings.DRSRECORDINGLINK ' use standard link
+            End If
             rw.RecordingLegth = oe1Prog.Duration * 60
-            rw.RecordingTime = oe1Prog.StartTime
             rw.Beschreibung = trimToThisLength(oe1Prog.MoreInfo, ds.DRS20.BeschreibungColumn.MaxLength)
-            rw.WMrecorderEntry = oe1Prog.wmRecordaSchedulEntry
+            rw.StatusEncodeStart = oe1Prog.StartTime ' this is the AIR TIME 
+            rw.StatusEncodeEnd = rw.RecordingTime.AddMinutes(oe1Prog.Duration) ' this is the RECORDING END TIME 
             ds.DRS20.Rows.Add(rw)
         Next
 
@@ -387,7 +403,7 @@ Public Module Functions
 
         For Each rw As DRSDataSet.DRS20Row In ds.DRS20.Rows
             'AirTime is original broadcast date
-            outText &= rw.RecordingTime & ";" & (rw.RecordingTime).AddSeconds(rw.RecordingLegth) & ";" & rw.RecordingLegth & ";" & replaceUmlaute(rw.MP3OutFileName) & ";" & My.Settings.DRSRECORDINGLINK & ";" & rw.RecordingTime & vbCrLf
+            outText &= rw.RecordingTime & ";" & rw.StatusEncodeEnd & ";" & rw.RecordingLegth & ";" & replaceUmlaute(rw.MP3OutFileName) & ";" & rw.WMrecorderEntry & ";" & rw.StatusEncodeStart & vbCrLf
         Next
         DeleteScheduleFile(viaWebService)
         Return (writeToSchedFile(outText, viaWebService))
