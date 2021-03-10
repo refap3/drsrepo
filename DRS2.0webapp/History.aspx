@@ -6,9 +6,14 @@
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="Id" DataSourceID="AccessDataSource1" EnableModelValidation="True" ForeColor="#333333" GridLines="None" PageSize="30">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:CommandField ShowEditButton="True" ShowDeleteButton="True" />
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                 <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                <asp:BoundField DataField="RecordingTime" HeaderText="RecordingTime" SortExpression="RecordingTime" />
+                <asp:BoundField DataField="RecordingTime" HeaderText="RecordingStart" SortExpression="RecordingTime" />
+                <asp:TemplateField HeaderText="End" >
+                    <ItemTemplate>
+                        <asp:Label Text='<%# Eval("StatusEncodeEnd", "{0:HH\:mm}") %>' runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:BoundField DataField="MP3OutFileName" HeaderText="MP3OutFileName" SortExpression="MP3OutFileName" />
                 <asp:CheckBoxField DataField="StatusDone" HeaderText="StatusDone" SortExpression="StatusDone" />
             </Columns>
@@ -19,7 +24,7 @@
             <RowStyle BackColor="#E3EAEB" />
             <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
         </asp:GridView>
-        <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="~/App_Data/DRS2.0.mdb" DeleteCommand="DELETE FROM [DRS] WHERE [Id] = ?" InsertCommand="INSERT INTO [DRS] ([Id], [RecordingTime], [MP3OutFileName], [StatusDone]) VALUES (?, ?, ?, ?)" SelectCommand="SELECT [Id], [RecordingTime], [MP3OutFileName], [StatusDone] FROM [DRS]  where [RecordingTime] < now() order by [RecordingTime] DESC" UpdateCommand="UPDATE [DRS] SET [RecordingTime] = ?, [MP3OutFileName] = ?, [StatusDone] = ? WHERE [Id] = ?">
+        <asp:AccessDataSource ID="AccessDataSource1" runat="server" DataFile="~/App_Data/DRS2.0.mdb" DeleteCommand="DELETE FROM [DRS] WHERE [Id] = ?" InsertCommand="INSERT INTO [DRS] ([Id], [RecordingTime], [MP3OutFileName], [StatusDone]) VALUES (?, ?, ?, ?)" SelectCommand="SELECT [Id], [RecordingTime],[StatusEncodeEnd], [MP3OutFileName], [StatusDone] FROM [DRS]  where [RecordingTime] &lt; now() order by [RecordingTime] DESC" UpdateCommand="UPDATE [DRS] SET [RecordingTime] = ?, [MP3OutFileName] = ?, [StatusDone] = ? WHERE [Id] = ?">
             <DeleteParameters>
                 <asp:Parameter Name="Id" Type="Int32" />
             </DeleteParameters>
