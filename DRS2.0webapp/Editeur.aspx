@@ -13,13 +13,12 @@
         <br />
         <br />
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
-            DataSourceID="AccessDataSource2" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Width="80%">
+            DataSourceID="AccessDataSource2" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Width="80%" EnableModelValidation="True">
             <Columns>
-                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                 <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True"
                     SortExpression="Id" />
-                <asp:BoundField DataField="RecordingTime" HeaderText="RecordingTime" SortExpression="RecordingTime" />
-                <asp:BoundField DataField="RecordingLegth" HeaderText="RecordingLegth" SortExpression="RecordingLegth" />
+                <asp:BoundField DataField="RecordingTime" HeaderText="Start" SortExpression="RecordingTime"  />
+                <asp:BoundField DataField="StatusEncodeEnd" HeaderText="End" SortExpression="StatusEncodeEnd" DataFormatString="{0:HH\:mm}" />
                 <asp:BoundField DataField="MP3OutFileName" HeaderText="MP3OutFileName" SortExpression="MP3OutFileName" />
             </Columns>
             <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
@@ -32,7 +31,7 @@
         <asp:AccessDataSource ID="AccessDataSource2" runat="server" ConflictDetection="CompareAllValues"
             DataFile="~/App_Data/DRS2.0.mdb" DeleteCommand="DELETE FROM [DRS] WHERE [Id] = ? AND [RecordingTime] = ? AND [RecordingLegth] = ? AND [MP3OutFileName] = ?"
             InsertCommand="INSERT INTO [DRS] ([Id], [RecordingTime], [RecordingLegth], [MP3OutFileName]) VALUES (?, ?, ?, ?)"
-            OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Id], [RecordingTime], [RecordingLegth], [MP3OutFileName] FROM [DRS] where [RecordingTime] > now() order by [RecordingTime]"
+            OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Id], [RecordingTime], [StatusEncodeEnd],[MP3OutFileName] FROM [DRS] where [RecordingTime] &gt; now() order by [RecordingTime]"
             UpdateCommand="UPDATE [DRS] SET [RecordingTime] = ?, [RecordingLegth] = ?, [MP3OutFileName] = ? WHERE [Id] = ? AND [RecordingTime] = ? AND [RecordingLegth] = ? AND [MP3OutFileName] = ?">
             <DeleteParameters>
                 <asp:Parameter Name="original_Id" Type="Int32" />
