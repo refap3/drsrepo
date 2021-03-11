@@ -8,7 +8,7 @@
             <Columns>
                 <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                 <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
-                <asp:BoundField DataField="RecordingTime" HeaderText="RecordingStart" SortExpression="RecordingTime" />
+                <asp:BoundField DataField="RecordingTime" HeaderText="Start" SortExpression="RecordingTime" />
                 <asp:TemplateField HeaderText="End" >
                     <ItemTemplate>
                         <asp:Label Text='<%# Eval("StatusEncodeEnd", "{0:HH\:mm}") %>' runat="server" />

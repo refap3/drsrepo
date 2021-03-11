@@ -101,15 +101,15 @@
             <Mappings>
               <Mapping SourceColumn="Id" DataSetColumn="Id" />
               <Mapping SourceColumn="RecordingTime" DataSetColumn="RecordingTime" />
-              <Mapping SourceColumn="RecordingLegth" DataSetColumn="RecordingLegth" />
+              <Mapping SourceColumn="RecordingLegth" DataSetColumn="RecordingLength" />
               <Mapping SourceColumn="Beschreibung" DataSetColumn="Beschreibung" />
               <Mapping SourceColumn="LinkMoreInfo" DataSetColumn="LinkMoreInfo" />
               <Mapping SourceColumn="MP3OutFileName" DataSetColumn="MP3OutFileName" />
               <Mapping SourceColumn="StatusDone" DataSetColumn="StatusDone" />
-              <Mapping SourceColumn="StatusEncodeStart" DataSetColumn="StatusEncodeStart" />
-              <Mapping SourceColumn="StatusEncodeEnd" DataSetColumn="StatusEncodeEnd" />
+              <Mapping SourceColumn="StatusEncodeStart" DataSetColumn="AirTime" />
+              <Mapping SourceColumn="StatusEncodeEnd" DataSetColumn="RecordingEnd" />
               <Mapping SourceColumn="Stored on CD" DataSetColumn="Stored on CD" />
-              <Mapping SourceColumn="WMrecorderEntry" DataSetColumn="WMrecorderEntry" />
+              <Mapping SourceColumn="WMrecorderEntry" DataSetColumn="LinkRecorder" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="DRS2_0ConnectionString (MySettings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteAllBeforeID" Modifier="Public" Name="DeleteAllBeforeID" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteAllBeforeID">
@@ -183,7 +183,7 @@ FROM            Wmrecorda</CommandText>
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
               <xs:element name="RecordingTime" msprop:Generator_ColumnVarNameInTable="columnRecordingTime" msprop:Generator_ColumnPropNameInRow="RecordingTime" msprop:Generator_ColumnPropNameInTable="RecordingTimeColumn" msprop:Generator_UserColumnName="RecordingTime" type="xs:dateTime" />
-              <xs:element name="RecordingLegth" msprop:Generator_ColumnVarNameInTable="columnRecordingLegth" msprop:Generator_ColumnPropNameInRow="RecordingLegth" msprop:Generator_ColumnPropNameInTable="RecordingLegthColumn" msprop:Generator_UserColumnName="RecordingLegth" type="xs:int" minOccurs="0" />
+              <xs:element name="RecordingLength" msprop:Generator_ColumnVarNameInTable="columnRecordingLength" msprop:Generator_ColumnPropNameInRow="RecordingLength" msprop:Generator_ColumnPropNameInTable="RecordingLengthColumn" msprop:Generator_UserColumnName="RecordingLength" type="xs:int" minOccurs="0" />
               <xs:element name="Beschreibung" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Beschreibung" msprop:Generator_ColumnVarNameInTable="columnBeschreibung" msprop:Generator_ColumnPropNameInTable="BeschreibungColumn" msprop:Generator_UserColumnName="Beschreibung" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -206,8 +206,8 @@ FROM            Wmrecorda</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="StatusDone" msprop:Generator_ColumnVarNameInTable="columnStatusDone" msprop:Generator_ColumnPropNameInRow="StatusDone" msprop:Generator_ColumnPropNameInTable="StatusDoneColumn" msprop:Generator_UserColumnName="StatusDone" type="xs:boolean" minOccurs="0" />
-              <xs:element name="StatusEncodeStart" msprop:Generator_ColumnVarNameInTable="columnStatusEncodeStart" msprop:Generator_ColumnPropNameInRow="StatusEncodeStart" msprop:Generator_ColumnPropNameInTable="StatusEncodeStartColumn" msprop:Generator_UserColumnName="StatusEncodeStart" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="StatusEncodeEnd" msprop:Generator_ColumnVarNameInTable="columnStatusEncodeEnd" msprop:Generator_ColumnPropNameInRow="StatusEncodeEnd" msprop:Generator_ColumnPropNameInTable="StatusEncodeEndColumn" msprop:Generator_UserColumnName="StatusEncodeEnd" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AirTime" msprop:Generator_ColumnVarNameInTable="columnAirTime" msprop:Generator_ColumnPropNameInRow="AirTime" msprop:Generator_ColumnPropNameInTable="AirTimeColumn" msprop:Generator_UserColumnName="AirTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="RecordingEnd" msprop:Generator_ColumnVarNameInTable="columnRecordingEnd" msprop:Generator_ColumnPropNameInRow="RecordingEnd" msprop:Generator_ColumnPropNameInTable="RecordingEndColumn" msprop:Generator_UserColumnName="RecordingEnd" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Stored_x0020_on_x0020_CD" msprop:Generator_ColumnVarNameInTable="columnStored_on_CD" msprop:Generator_ColumnPropNameInRow="Stored_on_CD" msprop:Generator_ColumnPropNameInTable="Stored_on_CDColumn" msprop:Generator_UserColumnName="Stored on CD" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -215,7 +215,7 @@ FROM            Wmrecorda</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="WMrecorderEntry" msprop:Generator_ColumnVarNameInTable="columnWMrecorderEntry" msprop:Generator_ColumnPropNameInRow="WMrecorderEntry" msprop:Generator_ColumnPropNameInTable="WMrecorderEntryColumn" msprop:Generator_UserColumnName="WMrecorderEntry" minOccurs="0">
+              <xs:element name="LinkRecorder" msprop:Generator_ColumnVarNameInTable="columnLinkRecorder" msprop:Generator_ColumnPropNameInRow="LinkRecorder" msprop:Generator_ColumnPropNameInTable="LinkRecorderColumn" msprop:Generator_UserColumnName="LinkRecorder" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />

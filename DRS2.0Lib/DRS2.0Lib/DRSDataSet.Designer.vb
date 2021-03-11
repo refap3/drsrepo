@@ -323,7 +323,7 @@ Partial Public Class DRSDataSet
         
         Private columnRecordingTime As Global.System.Data.DataColumn
         
-        Private columnRecordingLegth As Global.System.Data.DataColumn
+        Private columnRecordingLength As Global.System.Data.DataColumn
         
         Private columnBeschreibung As Global.System.Data.DataColumn
         
@@ -333,13 +333,13 @@ Partial Public Class DRSDataSet
         
         Private columnStatusDone As Global.System.Data.DataColumn
         
-        Private columnStatusEncodeStart As Global.System.Data.DataColumn
+        Private columnAirTime As Global.System.Data.DataColumn
         
-        Private columnStatusEncodeEnd As Global.System.Data.DataColumn
+        Private columnRecordingEnd As Global.System.Data.DataColumn
         
         Private columnStored_on_CD As Global.System.Data.DataColumn
         
-        Private columnWMrecorderEntry As Global.System.Data.DataColumn
+        Private columnLinkRecorder As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -394,9 +394,9 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property RecordingLegthColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property RecordingLengthColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnRecordingLegth
+                Return Me.columnRecordingLength
             End Get
         End Property
         
@@ -434,17 +434,17 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property StatusEncodeStartColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property AirTimeColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnStatusEncodeStart
+                Return Me.columnAirTime
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property StatusEncodeEndColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property RecordingEndColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnStatusEncodeEnd
+                Return Me.columnRecordingEnd
             End Get
         End Property
         
@@ -458,9 +458,9 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property WMrecorderEntryColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property LinkRecorderColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnWMrecorderEntry
+                Return Me.columnLinkRecorder
             End Get
         End Property
         
@@ -501,9 +501,9 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddDRS20Row(ByVal RecordingTime As Date, ByVal RecordingLegth As Integer, ByVal Beschreibung As String, ByVal LinkMoreInfo As String, ByVal MP3OutFileName As String, ByVal StatusDone As Boolean, ByVal StatusEncodeStart As Date, ByVal StatusEncodeEnd As Date, ByVal Stored_on_CD As String, ByVal WMrecorderEntry As String) As DRS20Row
+        Public Overloads Function AddDRS20Row(ByVal RecordingTime As Date, ByVal RecordingLength As Integer, ByVal Beschreibung As String, ByVal LinkMoreInfo As String, ByVal MP3OutFileName As String, ByVal StatusDone As Boolean, ByVal AirTime As Date, ByVal RecordingEnd As Date, ByVal Stored_on_CD As String, ByVal LinkRecorder As String) As DRS20Row
             Dim rowDRS20Row As DRS20Row = CType(Me.NewRow,DRS20Row)
-            Dim columnValuesArray() As Object = New Object() {Nothing, RecordingTime, RecordingLegth, Beschreibung, LinkMoreInfo, MP3OutFileName, StatusDone, StatusEncodeStart, StatusEncodeEnd, Stored_on_CD, WMrecorderEntry}
+            Dim columnValuesArray() As Object = New Object() {Nothing, RecordingTime, RecordingLength, Beschreibung, LinkMoreInfo, MP3OutFileName, StatusDone, AirTime, RecordingEnd, Stored_on_CD, LinkRecorder}
             rowDRS20Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowDRS20Row)
             Return rowDRS20Row
@@ -540,15 +540,15 @@ Partial Public Class DRSDataSet
         Friend Sub InitVars()
             Me.columnId = MyBase.Columns("Id")
             Me.columnRecordingTime = MyBase.Columns("RecordingTime")
-            Me.columnRecordingLegth = MyBase.Columns("RecordingLegth")
+            Me.columnRecordingLength = MyBase.Columns("RecordingLength")
             Me.columnBeschreibung = MyBase.Columns("Beschreibung")
             Me.columnLinkMoreInfo = MyBase.Columns("LinkMoreInfo")
             Me.columnMP3OutFileName = MyBase.Columns("MP3OutFileName")
             Me.columnStatusDone = MyBase.Columns("StatusDone")
-            Me.columnStatusEncodeStart = MyBase.Columns("StatusEncodeStart")
-            Me.columnStatusEncodeEnd = MyBase.Columns("StatusEncodeEnd")
+            Me.columnAirTime = MyBase.Columns("AirTime")
+            Me.columnRecordingEnd = MyBase.Columns("RecordingEnd")
             Me.columnStored_on_CD = MyBase.Columns("Stored on CD")
-            Me.columnWMrecorderEntry = MyBase.Columns("WMrecorderEntry")
+            Me.columnLinkRecorder = MyBase.Columns("LinkRecorder")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -558,8 +558,8 @@ Partial Public Class DRSDataSet
             MyBase.Columns.Add(Me.columnId)
             Me.columnRecordingTime = New Global.System.Data.DataColumn("RecordingTime", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRecordingTime)
-            Me.columnRecordingLegth = New Global.System.Data.DataColumn("RecordingLegth", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnRecordingLegth)
+            Me.columnRecordingLength = New Global.System.Data.DataColumn("RecordingLength", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRecordingLength)
             Me.columnBeschreibung = New Global.System.Data.DataColumn("Beschreibung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnBeschreibung)
             Me.columnLinkMoreInfo = New Global.System.Data.DataColumn("LinkMoreInfo", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -568,14 +568,14 @@ Partial Public Class DRSDataSet
             MyBase.Columns.Add(Me.columnMP3OutFileName)
             Me.columnStatusDone = New Global.System.Data.DataColumn("StatusDone", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStatusDone)
-            Me.columnStatusEncodeStart = New Global.System.Data.DataColumn("StatusEncodeStart", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStatusEncodeStart)
-            Me.columnStatusEncodeEnd = New Global.System.Data.DataColumn("StatusEncodeEnd", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnStatusEncodeEnd)
+            Me.columnAirTime = New Global.System.Data.DataColumn("AirTime", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAirTime)
+            Me.columnRecordingEnd = New Global.System.Data.DataColumn("RecordingEnd", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnRecordingEnd)
             Me.columnStored_on_CD = New Global.System.Data.DataColumn("Stored on CD", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnStored_on_CD)
-            Me.columnWMrecorderEntry = New Global.System.Data.DataColumn("WMrecorderEntry", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnWMrecorderEntry)
+            Me.columnLinkRecorder = New Global.System.Data.DataColumn("LinkRecorder", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnLinkRecorder)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnId}, true))
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint2", New Global.System.Data.DataColumn() {Me.columnRecordingTime}, false))
             Me.columnId.AutoIncrement = true
@@ -587,7 +587,7 @@ Partial Public Class DRSDataSet
             Me.columnLinkMoreInfo.MaxLength = 536870910
             Me.columnMP3OutFileName.MaxLength = 200
             Me.columnStored_on_CD.MaxLength = 50
-            Me.columnWMrecorderEntry.MaxLength = 255
+            Me.columnLinkRecorder.MaxLength = 255
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1030,16 +1030,16 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property RecordingLegth() As Integer
+        Public Property RecordingLength() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableDRS20.RecordingLegthColumn),Integer)
+                    Return CType(Me(Me.tableDRS20.RecordingLengthColumn),Integer)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'RecordingLegth' in table 'DRS20' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RecordingLength' in table 'DRS20' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDRS20.RecordingLegthColumn) = value
+                Me(Me.tableDRS20.RecordingLengthColumn) = value
             End Set
         End Property
         
@@ -1105,31 +1105,31 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property StatusEncodeStart() As Date
+        Public Property AirTime() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableDRS20.StatusEncodeStartColumn),Date)
+                    Return CType(Me(Me.tableDRS20.AirTimeColumn),Date)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'StatusEncodeStart' in table 'DRS20' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'AirTime' in table 'DRS20' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDRS20.StatusEncodeStartColumn) = value
+                Me(Me.tableDRS20.AirTimeColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property StatusEncodeEnd() As Date
+        Public Property RecordingEnd() As Date
             Get
                 Try 
-                    Return CType(Me(Me.tableDRS20.StatusEncodeEndColumn),Date)
+                    Return CType(Me(Me.tableDRS20.RecordingEndColumn),Date)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'StatusEncodeEnd' in table 'DRS20' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'RecordingEnd' in table 'DRS20' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDRS20.StatusEncodeEndColumn) = value
+                Me(Me.tableDRS20.RecordingEndColumn) = value
             End Set
         End Property
         
@@ -1150,29 +1150,29 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property WMrecorderEntry() As String
+        Public Property LinkRecorder() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableDRS20.WMrecorderEntryColumn),String)
+                    Return CType(Me(Me.tableDRS20.LinkRecorderColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'WMrecorderEntry' in table 'DRS20' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'LinkRecorder' in table 'DRS20' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableDRS20.WMrecorderEntryColumn) = value
+                Me(Me.tableDRS20.LinkRecorderColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsRecordingLegthNull() As Boolean
-            Return Me.IsNull(Me.tableDRS20.RecordingLegthColumn)
+        Public Function IsRecordingLengthNull() As Boolean
+            Return Me.IsNull(Me.tableDRS20.RecordingLengthColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetRecordingLegthNull()
-            Me(Me.tableDRS20.RecordingLegthColumn) = Global.System.Convert.DBNull
+        Public Sub SetRecordingLengthNull()
+            Me(Me.tableDRS20.RecordingLengthColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1225,26 +1225,26 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsStatusEncodeStartNull() As Boolean
-            Return Me.IsNull(Me.tableDRS20.StatusEncodeStartColumn)
+        Public Function IsAirTimeNull() As Boolean
+            Return Me.IsNull(Me.tableDRS20.AirTimeColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetStatusEncodeStartNull()
-            Me(Me.tableDRS20.StatusEncodeStartColumn) = Global.System.Convert.DBNull
+        Public Sub SetAirTimeNull()
+            Me(Me.tableDRS20.AirTimeColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsStatusEncodeEndNull() As Boolean
-            Return Me.IsNull(Me.tableDRS20.StatusEncodeEndColumn)
+        Public Function IsRecordingEndNull() As Boolean
+            Return Me.IsNull(Me.tableDRS20.RecordingEndColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetStatusEncodeEndNull()
-            Me(Me.tableDRS20.StatusEncodeEndColumn) = Global.System.Convert.DBNull
+        Public Sub SetRecordingEndNull()
+            Me(Me.tableDRS20.RecordingEndColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1261,14 +1261,14 @@ Partial Public Class DRSDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsWMrecorderEntryNull() As Boolean
-            Return Me.IsNull(Me.tableDRS20.WMrecorderEntryColumn)
+        Public Function IsLinkRecorderNull() As Boolean
+            Return Me.IsNull(Me.tableDRS20.LinkRecorderColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetWMrecorderEntryNull()
-            Me(Me.tableDRS20.WMrecorderEntryColumn) = Global.System.Convert.DBNull
+        Public Sub SetLinkRecorderNull()
+            Me(Me.tableDRS20.LinkRecorderColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -1516,15 +1516,15 @@ Namespace DRSDataSetTableAdapters
             tableMapping.DataSetTable = "DRS20"
             tableMapping.ColumnMappings.Add("Id", "Id")
             tableMapping.ColumnMappings.Add("RecordingTime", "RecordingTime")
-            tableMapping.ColumnMappings.Add("RecordingLegth", "RecordingLegth")
+            tableMapping.ColumnMappings.Add("RecordingLegth", "RecordingLength")
             tableMapping.ColumnMappings.Add("Beschreibung", "Beschreibung")
             tableMapping.ColumnMappings.Add("LinkMoreInfo", "LinkMoreInfo")
             tableMapping.ColumnMappings.Add("MP3OutFileName", "MP3OutFileName")
             tableMapping.ColumnMappings.Add("StatusDone", "StatusDone")
-            tableMapping.ColumnMappings.Add("StatusEncodeStart", "StatusEncodeStart")
-            tableMapping.ColumnMappings.Add("StatusEncodeEnd", "StatusEncodeEnd")
+            tableMapping.ColumnMappings.Add("StatusEncodeStart", "AirTime")
+            tableMapping.ColumnMappings.Add("StatusEncodeEnd", "RecordingEnd")
             tableMapping.ColumnMappings.Add("Stored on CD", "Stored on CD")
-            tableMapping.ColumnMappings.Add("WMrecorderEntry", "WMrecorderEntry")
+            tableMapping.ColumnMappings.Add("WMrecorderEntry", "LinkRecorder")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.OleDb.OleDbCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection

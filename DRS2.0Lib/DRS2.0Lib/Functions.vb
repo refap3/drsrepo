@@ -324,17 +324,17 @@ Public Module Functions
                 Dim dt = earlyStartTime ' start time without seconds etc ...
                 dt = dt.Date.AddHours(dt.Hour).AddMinutes(dt.Minute)
                 rw.RecordingTime = dt.AddMinutes(10) ' TODO: must enhance logic in the future!
-                rw.WMrecorderEntry = oe1Prog.MehrLink   ' use embedded player link
+                rw.LinkRecorder = oe1Prog.MehrLink   ' use embedded player link
                 earlyStartTime = earlyStartTime.AddMinutes(oe1Prog.Duration).AddMinutes(5) ' next possible starttime ... 
                 Debug.WriteLine("added 7 Tage OE1 Sendung @ " & rw.RecordingTime)
             Else
                 rw.RecordingTime = oe1Prog.StartTime
-                rw.WMrecorderEntry = My.Settings.DRSRECORDINGLINK ' use standard link
+                rw.LinkRecorder = My.Settings.DRSRECORDINGLINK ' use standard link
             End If
-            rw.RecordingLegth = oe1Prog.Duration * 60
+            rw.RecordingLength = oe1Prog.Duration * 60
             rw.Beschreibung = trimToThisLength(oe1Prog.MoreInfo, ds.DRS20.BeschreibungColumn.MaxLength)
-            rw.StatusEncodeStart = oe1Prog.StartTime ' this is the AIR TIME 
-            rw.StatusEncodeEnd = rw.RecordingTime.AddMinutes(oe1Prog.Duration) ' this is the RECORDING END TIME 
+            rw.AirTime = oe1Prog.StartTime ' this is the AIR TIME 
+            rw.RecordingEnd = rw.RecordingTime.AddMinutes(oe1Prog.Duration) ' this is the RECORDING END TIME 
             ds.DRS20.Rows.Add(rw)
         Next
 
@@ -408,7 +408,7 @@ Public Module Functions
 
         For Each rw As DRSDataSet.DRS20Row In ds.DRS20.Rows
             'AirTime is original broadcast date
-            outText &= rw.RecordingTime & ";" & rw.StatusEncodeEnd & ";" & rw.RecordingLegth & ";" & replaceUmlaute(rw.MP3OutFileName) & ";" & rw.WMrecorderEntry & ";" & rw.StatusEncodeStart & vbCrLf
+            outText &= rw.RecordingTime & ";" & rw.RecordingEnd & ";" & rw.RecordingLength & ";" & replaceUmlaute(rw.MP3OutFileName) & ";" & rw.LinkRecorder & ";" & rw.AirTime & vbCrLf
         Next
         DeleteScheduleFile(viaWebService)
         Return (writeToSchedFile(outText, viaWebService))

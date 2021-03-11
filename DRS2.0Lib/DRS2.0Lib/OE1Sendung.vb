@@ -118,9 +118,9 @@ Public Class OE1Sendung
 
     Public Overrides Function ToString() As String
         Dim toStr As String
-        toStr = Format(Me.StartTime, "dd.MM.yy HH:mm ") & Me.strProgramType & " " & Me.strProgram
+        Dim endTime = Format(Me.StartTime.AddMinutes(Me.Duration), "HH:mm")
+        toStr = Format(Me.StartTime, "dd.MM.yy HH:mm") & "-" & endTime & " " & Me.strProgramType & " " & Me.strProgram
         If Trim(Me.MoreInfo) <> "" Then toStr &= "-" & Me.strMoreInfo
-        toStr &= " (" & Me.Duration & ") "
         Return toStr
     End Function
 
