@@ -196,6 +196,7 @@ Public Module Functions
         s = s.Replace(Chr(9), "")
         s = s.Replace(Chr(10), "")
         s = s.Replace("&quot;", "")
+        s = s.Replace("&amp;", " und ")
         s = s.Replace("&nbsp;", " ")
         s = s.Replace("""", "")
         s = s.Replace("?", "")
@@ -315,7 +316,7 @@ Public Module Functions
             Else
                 fullMoreInfo = FindMoreInfoFromWeb(oe1Prog)
             End If
-            rw.MP3OutFileName = trimToThisLength(oe1Prog.Program & fullMoreInfo, ds.DRS20.MP3OutFileNameColumn.MaxLength)
+            rw.MP3OutFileName = DRSCorrectFileNameChars(trimToThisLength(oe1Prog.Program & fullMoreInfo, ds.DRS20.MP3OutFileNameColumn.MaxLength))
 
             ' handle 7 Tage OE 1 here ... 
             ' V1.0 is BRUTE FORCE

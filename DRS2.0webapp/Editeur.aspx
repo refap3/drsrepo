@@ -15,6 +15,7 @@
         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="Id"
             DataSourceID="AccessDataSource2" AllowPaging="True" AllowSorting="True" CellPadding="4" ForeColor="#333333" GridLines="None" Width="80%" EnableModelValidation="True">
             <Columns>
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" />
                 <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True"
                     SortExpression="Id" />
                 <asp:BoundField DataField="RecordingTime" HeaderText="Start" SortExpression="RecordingTime"  />
@@ -29,7 +30,7 @@
             <AlternatingRowStyle BackColor="White" />
         </asp:GridView>
         <asp:AccessDataSource ID="AccessDataSource2" runat="server" ConflictDetection="CompareAllValues"
-            DataFile="~/App_Data/DRS2.0.mdb" DeleteCommand="DELETE FROM [DRS] WHERE [Id] = ? AND [RecordingTime] = ? AND [RecordingLegth] = ? AND [MP3OutFileName] = ?"
+            DataFile="~/App_Data/DRS2.0.mdb" DeleteCommand="DELETE FROM [DRS] WHERE [Id] = ? "
             InsertCommand="INSERT INTO [DRS] ([Id], [RecordingTime], [RecordingLegth], [MP3OutFileName]) VALUES (?, ?, ?, ?)"
             OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Id], [RecordingTime], [StatusEncodeEnd],[MP3OutFileName] FROM [DRS] where [RecordingTime] &gt; now() order by [RecordingTime]"
             UpdateCommand="UPDATE [DRS] SET [RecordingTime] = ?, [RecordingLegth] = ?, [MP3OutFileName] = ? WHERE [Id] = ? AND [RecordingTime] = ? AND [RecordingLegth] = ? AND [MP3OutFileName] = ?">
