@@ -113,7 +113,7 @@ Public Module Functions
         Next
 
         If Not IsNothing(lastOe1Prog) Then
-            timFound = "05:59" ' hard coded end time of last program 
+            timFound = "05:55" ' hard coded end time of last program , we will reboot @0600
             If timFound < lastTimefound Then day = day.AddDays(1)
             lastOe1Prog.SetEndTime(Strings.Format(day, "yyyy-MM-dd"), timFound)
         End If
@@ -622,8 +622,10 @@ Public Module Functions
         Dim strReturn As String = ""
         Dim ta As DRSDataSetTableAdapters.DRS20TableAdapter = getDRS20TableAdapter()
         Dim res = ta.UpdateSucces(RecordingTime)
+        Dim fileName = ta.ReturnFilenameByDate(RecordingTime)
+
         If res = 1 Then
-            strReturn = "SUCCES RECORDING - Updated " & res & " rows."
+            strReturn = "SUCCES RECORDING - Updated " & fileName & "."
         Else
             strReturn = "Something went WRONG  - Updated " & res & " rows."
         End If

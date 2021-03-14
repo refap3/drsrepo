@@ -1628,409 +1628,445 @@ Namespace DRSDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(3) {}
+            Me._commandCollection = New Global.System.Data.OleDb.OleDbCommand(4) {}
             Me._commandCollection(0) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT Id, RecordingTime, RecordingLegth, Beschreibung, LinkMoreInfo, MP3OutFileN"& _ 
-                "ame, StatusDone, StatusEncodeStart, StatusEncodeEnd, [Stored on CD], WMrecorderE"& _ 
+            Me._commandCollection(0).CommandText = "SELECT Id, RecordingTime, RecordingLegth, Beschreibung, LinkMoreInfo, MP3OutFileN" &
+                "ame, StatusDone, StatusEncodeStart, StatusEncodeEnd, [Stored on CD], WMrecorderE" &
                 "ntry FROM DRS"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "delete from drs where recordingtime <= (select recordingtime from drs where id=?)"& _ 
+            Me._commandCollection(1).CommandText = "delete from drs where recordingtime <= (select recordingtime from drs where id=?)" &
                 ""
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "Id", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Id", Global.System.Data.OleDb.OleDbType.[Integer], 0, Global.System.Data.ParameterDirection.Input, CType(0, Byte), CType(0, Byte), "Id", Global.System.Data.DataRowVersion.Original, False, Nothing))
             Me._commandCollection(2) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT Id, RecordingTime, RecordingLegth, Beschreibung, LinkMoreInfo, MP3OutFileN"& _ 
-                "ame, StatusDone, StatusEncodeStart, StatusEncodeEnd, [Stored on CD], WMrecorderE"& _ 
-                "ntry FROM DRS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where (RecordingTime >= now()) order by RecordingTime"
+            Me._commandCollection(2).CommandText = "SELECT Id, RecordingTime, RecordingLegth, Beschreibung, LinkMoreInfo, MP3OutFileN" &
+                "ame, StatusDone, StatusEncodeStart, StatusEncodeEnd, [Stored on CD], WMrecorderE" &
+                "ntry FROM DRS" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "where (RecordingTime >= now()) order by RecordingTime"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3) = New Global.System.Data.OleDb.OleDbCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "UPDATE drs set StatusDone = True where StatusEncodeStart=?"
+            Me._commandCollection(3).CommandText = "SELECT min(mp3outfilename) FROM DRS where StatusEncodeStart=?"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_StatusEncodeStart", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0,Byte), CType(0,Byte), "StatusEncodeStart", Global.System.Data.DataRowVersion.Original, false, Nothing))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("StatusEncodeStart", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0, Byte), CType(0, Byte), "StatusEncodeStart", Global.System.Data.DataRowVersion.Current, False, Nothing))
+            Me._commandCollection(4) = New Global.System.Data.OleDb.OleDbCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "UPDATE drs set StatusDone = True where StatusEncodeStart=?"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.OleDb.OleDbParameter("Original_StatusEncodeStart", Global.System.Data.OleDb.OleDbType.[Date], 0, Global.System.Data.ParameterDirection.Input, CType(0, Byte), CType(0, Byte), "StatusEncodeStart", Global.System.Data.DataRowVersion.Original, False, Nothing))
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DRSDataSet.DRS20DataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, True)>
+        Public Overridable Overloads Function Fill(ByVal dataTable As DRSDataSet.DRS20DataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As DRSDataSet.DRS20DataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], True)>
+        Public Overridable Overloads Function GetData() As DRSDataSet.DRS20DataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As DRSDataSet.DRS20DataTable = New DRSDataSet.DRS20DataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByNow(ByVal dataTable As DRSDataSet.DRS20DataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)>
+        Public Overridable Overloads Function FillByNow(ByVal dataTable As DRSDataSet.DRS20DataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear()
             End If
             Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByNow() As DRSDataSet.DRS20DataTable
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)>
+        Public Overridable Overloads Function GetDataByNow() As DRSDataSet.DRS20DataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
             Dim dataTable As DRSDataSet.DRS20DataTable = New DRSDataSet.DRS20DataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As DRSDataSet.DRS20DataTable) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>
+        Public Overridable Overloads Function Update(ByVal dataTable As DRSDataSet.DRS20DataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As DRSDataSet) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>
+        Public Overridable Overloads Function Update(ByVal dataSet As DRSDataSet) As Integer
             Return Me.Adapter.Update(dataSet, "DRS20")
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>
+        Public Overridable Overloads Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>
+        Public Overridable Overloads Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
             Return Me.Adapter.Update(dataRows)
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_Id As Integer, ByVal Original_RecordingTime As Date, ByVal Original_RecordingLegth As Global.System.Nullable(Of Integer), ByVal Original_Beschreibung As String, ByVal Original_MP3OutFileName As String, ByVal Original_StatusDone As Boolean, ByVal Original_StatusEncodeStart As Global.System.Nullable(Of Date), ByVal Original_StatusEncodeEnd As Global.System.Nullable(Of Date), ByVal Original_Stored_on_CD As String, ByVal Original_WMrecorderEntry As String) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Id,Integer)
-            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_RecordingTime,Date)
-            If (Original_RecordingLegth.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_RecordingLegth.Value,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, True)>
+        Public Overridable Overloads Function Delete(ByVal Original_Id As Integer, ByVal Original_RecordingTime As Date, ByVal Original_RecordingLegth As Global.System.Nullable(Of Integer), ByVal Original_Beschreibung As String, ByVal Original_MP3OutFileName As String, ByVal Original_StatusDone As Boolean, ByVal Original_StatusEncodeStart As Global.System.Nullable(Of Date), ByVal Original_StatusEncodeEnd As Global.System.Nullable(Of Date), ByVal Original_Stored_on_CD As String, ByVal Original_WMrecorderEntry As String) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_Id, Integer)
+            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0, Object)
+            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_RecordingTime, Date)
+            If (Original_RecordingLegth.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_RecordingLegth.Value, Integer)
             Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
             End If
             If (Original_Beschreibung Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Beschreibung,String)
+                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Beschreibung, String)
             End If
             If (Original_MP3OutFileName Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_MP3OutFileName,String)
+                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(Original_MP3OutFileName, String)
             End If
-            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0,Object)
-            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_StatusDone,Boolean)
-            If (Original_StatusEncodeStart.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_StatusEncodeStart.Value,Date)
+            Me.Adapter.DeleteCommand.Parameters(9).Value = CType(0, Object)
+            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_StatusDone, Boolean)
+            If (Original_StatusEncodeStart.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_StatusEncodeStart.Value, Date)
             Else
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
             End If
-            If (Original_StatusEncodeEnd.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_StatusEncodeEnd.Value,Date)
+            If (Original_StatusEncodeEnd.HasValue = True) Then
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_StatusEncodeEnd.Value, Date)
             Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
             If (Original_Stored_on_CD Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Stored_on_CD,String)
+                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Stored_on_CD, String)
             End If
             If (Original_WMrecorderEntry Is Nothing) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1, Object)
                 Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_WMrecorderEntry,String)
+                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0, Object)
+                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_WMrecorderEntry, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
+                Me.Adapter.DeleteCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
+                    Me.Adapter.DeleteCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal RecordingTime As Date, ByVal RecordingLegth As Global.System.Nullable(Of Integer), ByVal Beschreibung As String, ByVal LinkMoreInfo As String, ByVal MP3OutFileName As String, ByVal StatusDone As Boolean, ByVal StatusEncodeStart As Global.System.Nullable(Of Date), ByVal StatusEncodeEnd As Global.System.Nullable(Of Date), ByVal Stored_on_CD As String, ByVal WMrecorderEntry As String) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(RecordingTime,Date)
-            If (RecordingLegth.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(RecordingLegth.Value,Integer)
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, True)>
+        Public Overridable Overloads Function Insert(ByVal RecordingTime As Date, ByVal RecordingLegth As Global.System.Nullable(Of Integer), ByVal Beschreibung As String, ByVal LinkMoreInfo As String, ByVal MP3OutFileName As String, ByVal StatusDone As Boolean, ByVal StatusEncodeStart As Global.System.Nullable(Of Date), ByVal StatusEncodeEnd As Global.System.Nullable(Of Date), ByVal Stored_on_CD As String, ByVal WMrecorderEntry As String) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(RecordingTime, Date)
+            If (RecordingLegth.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(1).Value = CType(RecordingLegth.Value, Integer)
             Else
                 Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (Beschreibung Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Beschreibung,String)
+                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Beschreibung, String)
             End If
             If (LinkMoreInfo Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(3).Value = CType(LinkMoreInfo,String)
+                Me.Adapter.InsertCommand.Parameters(3).Value = CType(LinkMoreInfo, String)
             End If
             If (MP3OutFileName Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(MP3OutFileName,String)
+                Me.Adapter.InsertCommand.Parameters(4).Value = CType(MP3OutFileName, String)
             End If
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(StatusDone,Boolean)
-            If (StatusEncodeStart.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(StatusEncodeStart.Value,Date)
+            Me.Adapter.InsertCommand.Parameters(5).Value = CType(StatusDone, Boolean)
+            If (StatusEncodeStart.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(6).Value = CType(StatusEncodeStart.Value, Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
-            If (StatusEncodeEnd.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(StatusEncodeEnd.Value,Date)
+            If (StatusEncodeEnd.HasValue = True) Then
+                Me.Adapter.InsertCommand.Parameters(7).Value = CType(StatusEncodeEnd.Value, Date)
             Else
                 Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (Stored_on_CD Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Stored_on_CD,String)
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Stored_on_CD, String)
             End If
             If (WMrecorderEntry Is Nothing) Then
                 Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.InsertCommand.Parameters(9).Value = CType(WMrecorderEntry,String)
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(WMrecorderEntry, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
+                Me.Adapter.InsertCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
+                    Me.Adapter.InsertCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal RecordingTime As Date,  _
-                    ByVal RecordingLegth As Global.System.Nullable(Of Integer),  _
-                    ByVal Beschreibung As String,  _
-                    ByVal LinkMoreInfo As String,  _
-                    ByVal MP3OutFileName As String,  _
-                    ByVal StatusDone As Boolean,  _
-                    ByVal StatusEncodeStart As Global.System.Nullable(Of Date),  _
-                    ByVal StatusEncodeEnd As Global.System.Nullable(Of Date),  _
-                    ByVal Stored_on_CD As String,  _
-                    ByVal WMrecorderEntry As String,  _
-                    ByVal Original_Id As Integer,  _
-                    ByVal Original_RecordingTime As Date,  _
-                    ByVal Original_RecordingLegth As Global.System.Nullable(Of Integer),  _
-                    ByVal Original_Beschreibung As String,  _
-                    ByVal Original_MP3OutFileName As String,  _
-                    ByVal Original_StatusDone As Boolean,  _
-                    ByVal Original_StatusEncodeStart As Global.System.Nullable(Of Date),  _
-                    ByVal Original_StatusEncodeEnd As Global.System.Nullable(Of Date),  _
-                    ByVal Original_Stored_on_CD As String,  _
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, True)>
+        Public Overridable Overloads Function Update(
+                    ByVal RecordingTime As Date,
+                    ByVal RecordingLegth As Global.System.Nullable(Of Integer),
+                    ByVal Beschreibung As String,
+                    ByVal LinkMoreInfo As String,
+                    ByVal MP3OutFileName As String,
+                    ByVal StatusDone As Boolean,
+                    ByVal StatusEncodeStart As Global.System.Nullable(Of Date),
+                    ByVal StatusEncodeEnd As Global.System.Nullable(Of Date),
+                    ByVal Stored_on_CD As String,
+                    ByVal WMrecorderEntry As String,
+                    ByVal Original_Id As Integer,
+                    ByVal Original_RecordingTime As Date,
+                    ByVal Original_RecordingLegth As Global.System.Nullable(Of Integer),
+                    ByVal Original_Beschreibung As String,
+                    ByVal Original_MP3OutFileName As String,
+                    ByVal Original_StatusDone As Boolean,
+                    ByVal Original_StatusEncodeStart As Global.System.Nullable(Of Date),
+                    ByVal Original_StatusEncodeEnd As Global.System.Nullable(Of Date),
+                    ByVal Original_Stored_on_CD As String,
                     ByVal Original_WMrecorderEntry As String) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(RecordingTime,Date)
-            If (RecordingLegth.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(RecordingLegth.Value,Integer)
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(RecordingTime, Date)
+            If (RecordingLegth.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(RecordingLegth.Value, Integer)
             Else
                 Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (Beschreibung Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Beschreibung,String)
+                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Beschreibung, String)
             End If
             If (LinkMoreInfo Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(3).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(LinkMoreInfo,String)
+                Me.Adapter.UpdateCommand.Parameters(3).Value = CType(LinkMoreInfo, String)
             End If
             If (MP3OutFileName Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(MP3OutFileName,String)
+                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(MP3OutFileName, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(StatusDone,Boolean)
-            If (StatusEncodeStart.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(StatusEncodeStart.Value,Date)
+            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(StatusDone, Boolean)
+            If (StatusEncodeStart.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(StatusEncodeStart.Value, Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
             End If
-            If (StatusEncodeEnd.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(StatusEncodeEnd.Value,Date)
+            If (StatusEncodeEnd.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(StatusEncodeEnd.Value, Date)
             Else
                 Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
             End If
             If (Stored_on_CD Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Stored_on_CD,String)
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Stored_on_CD, String)
             End If
             If (WMrecorderEntry Is Nothing) Then
                 Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(WMrecorderEntry,String)
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(WMrecorderEntry, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Id,Integer)
-            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_RecordingTime,Date)
-            If (Original_RecordingLegth.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_RecordingLegth.Value,Integer)
+            Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Original_Id, Integer)
+            Me.Adapter.UpdateCommand.Parameters(11).Value = CType(0, Object)
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Original_RecordingTime, Date)
+            If (Original_RecordingLegth.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_RecordingLegth.Value, Integer)
             Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(14).Value = Global.System.DBNull.Value
             End If
             If (Original_Beschreibung Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Beschreibung,String)
+                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Beschreibung, String)
             End If
             If (Original_MP3OutFileName Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_MP3OutFileName,String)
+                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_MP3OutFileName, String)
             End If
-            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_StatusDone,Boolean)
-            If (Original_StatusEncodeStart.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_StatusEncodeStart.Value,Date)
+            Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0, Object)
+            Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_StatusDone, Boolean)
+            If (Original_StatusEncodeStart.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_StatusEncodeStart.Value, Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
             End If
-            If (Original_StatusEncodeEnd.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_StatusEncodeEnd.Value,Date)
+            If (Original_StatusEncodeEnd.HasValue = True) Then
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_StatusEncodeEnd.Value, Date)
             Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
             End If
             If (Original_Stored_on_CD Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Stored_on_CD,String)
+                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_Stored_on_CD, String)
             End If
             If (Original_WMrecorderEntry Is Nothing) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1, Object)
                 Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
             Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_WMrecorderEntry,String)
+                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0, Object)
+                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_WMrecorderEntry, String)
             End If
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
+                Me.Adapter.UpdateCommand.Connection.Open()
             End If
-            Try 
+            Try
                 Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
                 Return returnValue
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
+                    Me.Adapter.UpdateCommand.Connection.Close()
                 End If
             End Try
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
-        Public Overloads Overridable Function DeleteAllBeforeID(ByVal Id As Integer) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, False)>
+        Public Overridable Overloads Function DeleteAllBeforeID(ByVal Id As Integer) As Integer
             Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(1)
-            command.Parameters(0).Value = CType(Id,Integer)
+            command.Parameters(0).Value = CType(Id, Integer)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
-            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
                         <> Global.System.Data.ConnectionState.Open) Then
-                command.Connection.Open
+                command.Connection.Open()
             End If
             Dim returnValue As Integer
-            Try 
+            Try
                 returnValue = command.ExecuteNonQuery
             Finally
                 If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    command.Connection.Close
+                    command.Connection.Close()
                 End If
             End Try
             Return returnValue
         End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateSucces(ByVal Original_StatusEncodeStart As Global.System.Nullable(Of Date)) As Integer
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>
+        Public Overridable Overloads Function ReturnFilenameByDate(ByVal StatusEncodeStart As Global.System.Nullable(Of Date)) As String
             Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(3)
+            If (StatusEncodeStart.HasValue = True) Then
+                command.Parameters(0).Value = CType(StatusEncodeStart.Value, Date)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open) _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open()
+            End If
+            Dim returnValue As Object
+            Try
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close()
+                End If
+            End Try
+            If ((returnValue Is Nothing) _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue, String)
+            End If
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, False)>
+        Public Overridable Overloads Function UpdateSucces(ByVal Original_StatusEncodeStart As Global.System.Nullable(Of Date)) As Integer
+            Dim command As Global.System.Data.OleDb.OleDbCommand = Me.CommandCollection(4)
             If (Original_StatusEncodeStart.HasValue = true) Then
                 command.Parameters(0).Value = CType(Original_StatusEncodeStart.Value,Date)
             Else
