@@ -1,6 +1,6 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.35
+$BuildNumber=1.38
 # Setup adjust recording time range ...
 # Grace: accept if record start is before now - grace
 # Before: Begin recording after before seconds, ie. 5: 5 secs later 
@@ -36,8 +36,13 @@ function Write-DbgView ($s)
 
 function echo_debug ($s)
 {
-  echo $s
+  echo_console $s
   Write-DbgView $s
+}
+
+function echo_console($s)
+{
+	echo $s
 }
 
 # cleanup from possible previous crash ....
@@ -50,8 +55,8 @@ Try
     while ($true)
     {
 
-      Write-DbgView "$BuildNumber :refresh SCHEDULE file "
-      if ((Test-Path $schedFile) -eq $false) { Write-DbgView "no schedule found, wait & retry";sleep 10 ; break}
+      echo_console "$BuildNumber :refresh SCHEDULE file "
+      if ((Test-Path $schedFile) -eq $false) { echo_console "no schedule found, wait & retry";sleep 10 ; break}
       $wmrecs =Import-Csv $schedFile -Delimiter ";" | `
       Select @{Name="RecordingTime";Expression={(Get-date $_.RecordingTime)}}, @{Name="EndTime";Expression={(get-date $_.EndTime)}}, @{Name="Length";Expression={[int32]$_.Length}}, Filename, Link, @{Name="AirTime";Expression={(Get-date $_.AirTime)}} | where Recordingtime -gt ((get-date).AddSeconds($secondsGrace)) | sort Recordingtime 
       #  if ($wmrecs.Length -gt 0 ) {echo "$($wmrecs.length) recording(s) ... Next @ $($wmrecs[0].RecordingTime) to $($wmrecs[0].EndTime.Hour.ToString('00')):$($wmrecs[0].EndTime.Minute.ToString('00')) - $($wmrecs[0].FileName)" }
@@ -64,9 +69,9 @@ Try
         $smins=$ssecs/60
     
         # if enough time until next recording sleep and re-read schedule again 
-        if ($smins -gt 10) {Write-DbgView "$($smins.tostring('0')) mins to go for $($nextRec.Filename) ..." ; sleep 60 ; break }
+        if ($smins -gt 10) {echo_console "$($smins.tostring('0')) mins to go for $($nextRec.Filename) ..." ; sleep 60 ; break }
     
-        echo_debug "V: $BuildNumber-will record this: $nextRec in $($smins.tostring('0')) minutes."
+        echo_console "V: $BuildNumber-will record this: $nextRec in $($smins.tostring('0')) minutes."
  
         if ($ssecs -gt 0 ) {sleep  $ssecs } # sleep until start time 
         # compute maximum sec after recording ... Problem if next Recording starts @ this.EndTime ....
@@ -79,7 +84,7 @@ Try
             # echo "end: $($nextRec.EndTime) nextrec: $($wmrecs[1].RecordingTime)"
           }
         }
-        echo_debug "recording NOW: $($nextRec.RecordingTime) to $($nextRec.EndTime.Hour.ToString('00')):$($nextRec.EndTime.Minute.ToString('00')) - $($nextRec.FileName) with slack: $secondsAfterUsed"
+        echo_debug "Recording until: $($nextRec.EndTime.Hour.ToString('00')):$($nextRec.EndTime.Minute.ToString('00')) - $($nextRec.FileName) with slack: $secondsAfterUsed"
         start $nextRec.Link
         sleep ((($nextRec.EndTime) - (get-date)).totalseconds + $secondsAfterUsed) # sleep until end time 
       
@@ -98,17 +103,17 @@ Try
           Rename-Item -Path $lastf.FullName -NewName "$($nextRec.FileName).mp3"
           
         }
-        else {Write-Host -ForegroundColor Red "No output mp3 file found ... !"}
+        else {echo_debug "ERR: No output mp3 file found ... !"}
     
         # test exception handling and restart in between ...
         # throw "OMG I FUCKED UPPPPPPP ........................"
              
-        echo_debug  "Recording: $($nextRec.Filename) ... done"
+        echo_debug  "Recording done: $($nextRec.Filename)"
         sleep 2
       }
       else 
       {
-        Write-DbgView "Nothing found ... sleep and retry!"
+        echo_console "Nothing found ... sleep and retry!"
         sleep 5
       }
     }
@@ -116,10 +121,9 @@ Try
 }
 catch 
 {
-  Write-Output "Bloody exception with $PSCommandPath resulted in  $($PSItem.tostring())"
-  Write-DbgView "Bloody exception with $PSCommandPath resulted in  $($PSItem.tostring())"
+  echo_debug "Bloody exception with $PSCommandPath resulted in  $($PSItem.tostring())"
   sleep 3
-  Write-Output "$(Get-Date) Restart time "
+  echo_console "$(Get-Date) Restart time "
   # restart your foccing self
   & $PSCommandPath 
 }

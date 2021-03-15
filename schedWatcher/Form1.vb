@@ -37,7 +37,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub addListBoxInfo(ByVal s As String)
+    Private Sub addListBoxInfo(ByVal s As String, Optional SuppresDebug As Boolean = False)
 
         ' InvokeRequired required compares the thread ID of the
         ' calling thread to the thread ID of the creating thread.
@@ -48,6 +48,7 @@ Public Class Form1
         Else
             ListBox1.Items.Add(Now.ToString("HH:mm:ss") & " " & s)
             ListBox1.SelectedIndex = ListBox1.Items.Count - 1
+            If Not (SuppresDebug) Then Debug.WriteLine(s) ' also write to debug output
         End If
     End Sub
 
@@ -142,7 +143,7 @@ Public Class Form1
         Dim di As New DirectoryInfo(My.Settings.asfWATCHdirectory)
         For Each fil As FileInfo In di.GetFiles
             If ((fil.Extension).ToLower = mediaFILEEXTENSION) Or ((fil.Extension).ToLower = screenshotFILEEXTENSION) Then
-                addListBoxInfo("try MOV media fil: " & fil.Name)
+                addListBoxInfo("try MOV media fil: " & fil.Name, True)
                 Dim yr As String, mo As String, dy As String, hh As String, mm As String, ct As Date
                 yr = fil.CreationTime.Year.ToString
                 mo = fil.CreationTime.Month.ToString("00")
@@ -172,7 +173,7 @@ Public Class Form1
                     'addListBoxInfo("Lofile path: " & getPathtoAppData())
 
                     fil.MoveTo(dstPath)    ' 9.1.18 it IS already MP3 -- !!
-                    addListBoxInfo(" MOVEed ..." & dstPath)
+                    addListBoxInfo(" MOVEed ..." & dstPath, True)
                     AppendToRecordLog("OK: " & dstPath)
                     Dim dbUpdateResult = storeSuccessRecording(ct)
                     Debug.WriteLine(dbUpdateResult)

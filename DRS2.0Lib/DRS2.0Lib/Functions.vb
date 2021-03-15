@@ -113,7 +113,7 @@ Public Module Functions
         Next
 
         If Not IsNothing(lastOe1Prog) Then
-            timFound = "05:55" ' hard coded end time of last program , we will reboot @0600
+            timFound = "05:50" ' hard coded end time of last program , we will reboot @0600
             If timFound < lastTimefound Then day = day.AddDays(1)
             lastOe1Prog.SetEndTime(Strings.Format(day, "yyyy-MM-dd"), timFound)
         End If
@@ -236,6 +236,7 @@ Public Module Functions
 
     Public Sub AppendToRecordLog(ByVal txt As String)
         My.Computer.FileSystem.WriteAllText(getPathtoAppData() & LOGFILENAME, txt & vbCrLf, True)
+        Debug.WriteLine(txt)
     End Sub
 
     Public Function FillCheckBoxWithprogInfo(ByVal SkipArchive As Boolean, ByVal clb As CheckedListBox, ByVal myOe1s As OE1Sendung(), ByVal filtered() As String)
