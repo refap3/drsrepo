@@ -1,6 +1,6 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.38
+$BuildNumber=1.39
 # Setup adjust recording time range ...
 # Grace: accept if record start is before now - grace
 # Before: Begin recording after before seconds, ie. 5: 5 secs later 
@@ -84,7 +84,7 @@ Try
             # echo "end: $($nextRec.EndTime) nextrec: $($wmrecs[1].RecordingTime)"
           }
         }
-        echo_debug "Recording until: $($nextRec.EndTime.Hour.ToString('00')):$($nextRec.EndTime.Minute.ToString('00')) - $($nextRec.FileName) with slack: $secondsAfterUsed"
+        echo_debug "1. Until: $($nextRec.EndTime.Hour.ToString('00')):$($nextRec.EndTime.Minute.ToString('00')) - $($nextRec.FileName) with slack: $secondsAfterUsed"
         start $nextRec.Link
         sleep ((($nextRec.EndTime) - (get-date)).totalseconds + $secondsAfterUsed) # sleep until end time 
       
@@ -108,7 +108,7 @@ Try
         # test exception handling and restart in between ...
         # throw "OMG I FUCKED UPPPPPPP ........................"
              
-        echo_debug  "Recording done: $($nextRec.Filename)"
+        echo_debug  "2. Done: $($nextRec.Filename)"
         sleep 2
       }
       else 

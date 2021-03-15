@@ -174,7 +174,7 @@ Public Class Form1
 
                     fil.MoveTo(dstPath)    ' 9.1.18 it IS already MP3 -- !!
                     addListBoxInfo(" MOVEed ..." & dstPath, True)
-                    AppendToRecordLog("OK: " & dstPath)
+                    AppendToRecordLog("3. Moved: " & dstPath)
                     Dim dbUpdateResult = storeSuccessRecording(ct)
                     Debug.WriteLine(dbUpdateResult)
                 Catch ex As Exception

@@ -604,6 +604,8 @@ Public Module Functions
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "ü", "ue")
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "Ü", "Ue")
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "ß", "ss")
+        ' remove diacrits from stackoverflow .... 
+
         ' starnge case that I had Fragezeichen in out file -- WTF !
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "?", "")
         regEXP = CreateObject("vbscript.regEXP")
@@ -626,7 +628,7 @@ Public Module Functions
         Dim fileName = ta.ReturnFilenameByDate(RecordingTime)
 
         If res = 1 Then
-            strReturn = "SUCCES RECORDING - Updated " & fileName & "."
+            strReturn = "4. Success: " & fileName & "."
         Else
             strReturn = "Something went WRONG  - Updated " & res & " rows."
         End If
