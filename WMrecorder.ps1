@@ -1,6 +1,6 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.39
+$BuildNumber=1.42
 # Setup adjust recording time range ...
 # Grace: accept if record start is before now - grace
 # Before: Begin recording after before seconds, ie. 5: 5 secs later 
@@ -89,7 +89,10 @@ Try
         sleep ((($nextRec.EndTime) - (get-date)).totalseconds + $secondsAfterUsed) # sleep until end time 
       
         ps $BrowserName -ErrorAction SilentlyContinue|kill -ErrorAction SilentlyContinue
-        sleep 3
+		    # calc sleep time untile mp3 file appears to avoid race condition 
+		    $sleepTime = (3 + ($nextRec.Length/1000)) -as [int] 
+		    echo_debug "*. wait $sleepTime secs. for MediaFile to appear"
+        sleep $sleepTime	
 
         # rename and process DateTime Attributes on out file
         $files=ls c:\temp\*.mp3|sort LastWriteTime -Descending
