@@ -84,8 +84,7 @@ Public Module Functions
                 Next
             End If
 
-            Debug.WriteLine(ntim & "##" & ntit & "##" & nlink & "##" & "" & "##" & typeFound)
-
+            'Debug.WriteLine(ntim & "##" & ntit & "##" & nlink & "##" & "" & "##" & typeFound)
 
             timFound = ntim
             progFound = removeControlcharsAndTagsAndSpaces(ntit)
@@ -606,11 +605,8 @@ Public Module Functions
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "ß", "ss")
         ' remove diacrits from stackoverflow .... https://stackoverflow.com/questions/249087/how-do-i-remove-diacritics-accents-from-a-string-in-net
         Dim tempBytes() As Byte
-        Debug.WriteLine("diacrits still here: " & DRSCorrectFileNameChars)
         tempBytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(DRSCorrectFileNameChars)
         DRSCorrectFileNameChars = System.Text.Encoding.UTF8.GetString(tempBytes)
-        Debug.WriteLine("diacrits removed here: " & DRSCorrectFileNameChars)
-
         ' starnge case that I had Fragezeichen in out file -- WTF !
         DRSCorrectFileNameChars = Replace(DRSCorrectFileNameChars, "?", "")
         regEXP = CreateObject("vbscript.regEXP")

@@ -175,8 +175,12 @@ Public Class Form1
                     fil.MoveTo(dstPath)    ' 9.1.18 it IS already MP3 -- !!
                     addListBoxInfo(" MOVEed ..." & dstPath, True)
                     AppendToRecordLog("3. Moved: " & dstPath)
-                    Dim dbUpdateResult = storeSuccessRecording(ct)
-                    Debug.WriteLine(dbUpdateResult)
+                    ' check success only for media files 
+                    If ((fil.Extension).ToLower = mediaFILEEXTENSION) Then
+                        Dim dbUpdateResult = storeSuccessRecording(ct)
+                        Debug.WriteLine(dbUpdateResult)
+                    End If
+
                 Catch ex As Exception
                     addListBoxInfo("MOV faild- maybe still OK: " & ex.Message)
                 End Try
