@@ -1,6 +1,6 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.42
+$BuildNumber=1.44
 # Setup adjust recording time range ...
 # Grace: accept if record start is before now - grace
 # Before: Begin recording after before seconds, ie. 5: 5 secs later 
@@ -47,7 +47,8 @@ function echo_console($s)
 
 # cleanup from possible previous crash ....
 ps $BrowserName -ErrorAction SilentlyContinue|kill -ErrorAction SilentlyContinue
-
+$tod=(get-date).ToString("dd.MM.yyyy")
+echo_debug "$BuildNumber today is $tod."
 Try
 {
   while ($true) # use another outer loop for break inside inner loop 
@@ -91,7 +92,7 @@ Try
         ps $BrowserName -ErrorAction SilentlyContinue|kill -ErrorAction SilentlyContinue
 		    # calc sleep time untile mp3 file appears to avoid race condition 
 		    $sleepTime = (3 + ($nextRec.Length/1000)) -as [int] 
-		    echo_debug "*. wait $sleepTime secs. for MediaFile to appear"
+		    echo_debug "2. wait $sleepTime secs. for MediaFile to appear"
         sleep $sleepTime	
 
         # rename and process DateTime Attributes on out file
@@ -111,7 +112,7 @@ Try
         # test exception handling and restart in between ...
         # throw "OMG I FUCKED UPPPPPPP ........................"
              
-        echo_debug  "2. Done: $($nextRec.Filename)"
+        echo_debug  "3. Done: $($nextRec.Filename)"
         sleep 2
       }
       else 

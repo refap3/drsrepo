@@ -24,12 +24,28 @@ Public Class Form1
     End Sub
 
     Private Sub FileSystemWatcher1_Changed(ByVal sender As Object, ByVal e As System.IO.FileSystemEventArgs) Handles FileSystemWatcher1.Changed
-        addListBoxInfo("change detected to: " & e.FullPath)
-        If Trim(e.FullPath).ToLower = Trim(getSCHEDULETEXTFILEname()).ToLower Then
-            addListBoxInfo("SCHED file changed -- DO NOT restart wmrecorder!")
+        ' use this to watch for renamed Media files ... trigger archive from here 
+        Dim p = Path.GetExtension(e.FullPath).ToLower
+        If (p = mediaFILEEXTENSION) Then
+            addListBoxInfo("media file changed detected for: " & e.FullPath, True)
+            ' and call archive thread
             If Not IsNothing(t) Then
                 t.Abort()
-                addListBoxInfo("ABORT old hound waiting thread!!")
+                addListBoxInfo("ABORT old hound waiting thread!!", True)
+            End If
+            t = New Threading.Thread(AddressOf ActionARCHIVE)
+            t.Start()
+
+        Else
+            addListBoxInfo("change detected to: " & e.FullPath)
+        End If
+
+
+        If Trim(e.FullPath).ToLower = Trim(getSCHEDULETEXTFILEname()).ToLower Then
+            addListBoxInfo("SCHED file changed -- DO NOT restart wmrecorder!", True)
+            If Not IsNothing(t) Then
+                t.Abort()
+                addListBoxInfo("ABORT old hound waiting thread!!", True)
             End If
             t = New Threading.Thread(AddressOf AcTION)
             'Do NOT kill !
@@ -100,6 +116,13 @@ Public Class Form1
         Dim t As Threading.Thread = Threading.Thread.CurrentThread
         t.Abort()
         t = Nothing
+    End Sub
+
+    Sub ActionARCHIVE()
+        addListBoxInfo("Archive Thread Start ", True)
+        Threading.Thread.Sleep(2000)
+        tmrArchive_Tick(Nothing, Nothing)
+        addListBoxInfo("Archive Thread DONE ", True)
     End Sub
 
     Private Function recRestart() As String
@@ -174,7 +197,7 @@ Public Class Form1
 
                     fil.MoveTo(dstPath)    ' 9.1.18 it IS already MP3 -- !!
                     addListBoxInfo(" MOVEed ..." & dstPath, True)
-                    AppendToRecordLog("3. Moved: " & dstPath)
+                    AppendToRecordLog("4. Moved: " & dstPath)
                     ' check success only for media files 
                     If ((fil.Extension).ToLower = mediaFILEEXTENSION) Then
                         Dim dbUpdateResult = storeSuccessRecording(ct)

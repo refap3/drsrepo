@@ -15,11 +15,11 @@ Public Class WSFileAccess
         'WRITING of bginfo file is OK without ws but des NOT werk with WS 
         ' i bloody do NOT KNOW Y?
 
-        Debug.WriteLine("WS--ENTER  SaveScheduleFile ")
+        'Debug.WriteLine("WS--ENTER  SaveScheduleFile ")
         Try
             'Debug.WriteLine("WS--ABOUT to write BGINFO file ")
             'My.Computer.FileSystem.WriteAllText(getSCHEDULETEXTFILEname() & ".BGINFO", OE1Sendung.unRawWmrecordaEntry(schedFileContent), False, New System.Text.ASCIIEncoding)
-            Debug.WriteLine("WS--ABOUT to write schedule file ")
+            'Debug.WriteLine("WS--ABOUT to write schedule file ")
             My.Computer.FileSystem.WriteAllText(getSCHEDULETEXTFILEname(), schedFileContent, False, New System.Text.ASCIIEncoding)
         Catch ex As Exception
             Debug.WriteLine("WS--EXECPTION: " & ex.Message)
@@ -39,7 +39,7 @@ Public Class WSFileAccess
 
     <WebMethod()> _
         Public Sub DeleteScheduleFile()
-        Debug.WriteLine("WS--ENTER  DeleteScheduleFile ")
+        'Debug.WriteLine("WS--ENTER  DeleteScheduleFile ")
         Try
             My.Computer.FileSystem.DeleteFile(getSCHEDULETEXTFILEname())
         Catch ex As Exception
