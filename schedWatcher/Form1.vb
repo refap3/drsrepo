@@ -20,32 +20,32 @@ Public Class Form1
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         FileSystemWatcher1.Path = My.Computer.FileSystem.GetParentPath(getSCHEDULETEXTFILEname())
         InitWSredirection(My.Settings.FILESERVINGHOST, My.Settings.RECORDERHOST)
-        addListBoxInfo("inited file system wotcher @ " & getSCHEDULETEXTFILEname())
+        addListBoxInfoAndDEBUG("inited file system wotcher @ " & getSCHEDULETEXTFILEname())
     End Sub
 
     Private Sub FileSystemWatcher1_Changed(ByVal sender As Object, ByVal e As System.IO.FileSystemEventArgs) Handles FileSystemWatcher1.Changed
         ' use this to watch for renamed Media files ... trigger archive from here 
         Dim p = Path.GetExtension(e.FullPath).ToLower
         If (p = mediaFILEEXTENSION) Then
-            addListBoxInfo("media file changed detected for: " & e.FullPath, True)
+            addListBoxInfo("media file changed detected for: " & e.FullPath)
             ' and call archive thread
             If Not IsNothing(t) Then
                 t.Abort()
-                addListBoxInfo("ABORT old hound waiting thread!!", True)
+                addListBoxInfo("ABORT old hound waiting thread!!")
             End If
             t = New Threading.Thread(AddressOf ActionARCHIVE)
             t.Start()
 
         Else
-            addListBoxInfo("change detected to: " & e.FullPath)
+            addListBoxInfoAndDEBUG("change detected to: " & e.FullPath)
         End If
 
 
         If Trim(e.FullPath).ToLower = Trim(getSCHEDULETEXTFILEname()).ToLower Then
-            addListBoxInfo("SCHED file changed -- DO NOT restart wmrecorder!", True)
+            addListBoxInfo("SCHED file changed -- DO NOT restart wmrecorder!")
             If Not IsNothing(t) Then
                 t.Abort()
-                addListBoxInfo("ABORT old hound waiting thread!!", True)
+                addListBoxInfo("ABORT old hound waiting thread!!")
             End If
             t = New Threading.Thread(AddressOf AcTION)
             'Do NOT kill !
@@ -53,7 +53,22 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub addListBoxInfo(ByVal s As String, Optional SuppresDebug As Boolean = False)
+    Private Sub addListBoxInfoAndDEBUG(ByVal s As String)
+        ' this is a bloody copy of the below routine 
+        ' did not figure out how to INVOKE with multiple arguments
+        ' 
+        If Me.ListBox1.InvokeRequired Then
+            Dim d As New SetTextCallback(AddressOf addListBoxInfoAndDEBUG)
+            Me.Invoke(d, New Object() {s})
+        Else
+            ListBox1.Items.Add(Now.ToString("HH:mm:ss") & " " & s)
+            ListBox1.SelectedIndex = ListBox1.Items.Count - 1
+            Debug.WriteLine(s) ' also write to debug output
+        End If
+
+
+    End Sub
+    Private Sub addListBoxInfo(ByVal s As String)
 
         ' InvokeRequired required compares the thread ID of the
         ' calling thread to the thread ID of the creating thread.
@@ -64,7 +79,6 @@ Public Class Form1
         Else
             ListBox1.Items.Add(Now.ToString("HH:mm:ss") & " " & s)
             ListBox1.SelectedIndex = ListBox1.Items.Count - 1
-            If Not (SuppresDebug) Then Debug.WriteLine(s) ' also write to debug output
         End If
     End Sub
 
@@ -119,10 +133,10 @@ Public Class Form1
     End Sub
 
     Sub ActionARCHIVE()
-        addListBoxInfo("Archive Thread Start ", True)
+        addListBoxInfo("Archive Thread Start ")
         Threading.Thread.Sleep(2000)
         tmrArchive_Tick(Nothing, Nothing)
-        addListBoxInfo("Archive Thread DONE ", True)
+        addListBoxInfo("Archive Thread DONE ")
     End Sub
 
     Private Function recRestart() As String
@@ -166,7 +180,7 @@ Public Class Form1
         Dim di As New DirectoryInfo(My.Settings.asfWATCHdirectory)
         For Each fil As FileInfo In di.GetFiles
             If ((fil.Extension).ToLower = mediaFILEEXTENSION) Or ((fil.Extension).ToLower = screenshotFILEEXTENSION) Then
-                addListBoxInfo("try MOV media fil: " & fil.Name, True)
+                addListBoxInfo("try MOV media fil: " & fil.Name)
                 Dim yr As String, mo As String, dy As String, hh As String, mm As String, ct As Date
                 yr = fil.CreationTime.Year.ToString
                 mo = fil.CreationTime.Month.ToString("00")
@@ -196,7 +210,7 @@ Public Class Form1
                     'addListBoxInfo("Lofile path: " & getPathtoAppData())
 
                     fil.MoveTo(dstPath)    ' 9.1.18 it IS already MP3 -- !!
-                    addListBoxInfo(" MOVEed ..." & dstPath, True)
+                    addListBoxInfo(" MOVEed ..." & dstPath)
                     AppendToRecordLog("4. Moved: " & dstPath)
                     ' check success only for media files 
                     If ((fil.Extension).ToLower = mediaFILEEXTENSION) Then
@@ -228,7 +242,7 @@ Public Class Form1
         Try
             addInternetTime("I: " & Daytime.GetTime())
         Catch ex As Exception
-            addListBoxInfo("EXC in timSync: " & ex.Message)
+            addListBoxInfoAndDEBUG("EXC in timSync: " & ex.Message)
         End Try
         addLocalTime("L: " & Now)
 
