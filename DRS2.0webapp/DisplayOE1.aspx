@@ -20,7 +20,7 @@
     <asp:CheckBox ID="CheckBox1" runat="server" Text="Filter on" AutoPostBack="True" Checked="True" />&nbsp;&nbsp;<asp:CheckBox ID="ArchiveCheckBox" runat="server" AutoPostBack="True" Checked="True" Text="Hide Archive" />
 &nbsp;<br />
     <strong>recording</strong>: &nbsp;
-    <asp:Button ID="Button11" runat="server" Text="DB-DeleteALL" BackColor="Red" ForeColor="#FFFFCC" ToolTip="CAUTION!!" />&nbsp;
+    <asp:Button ID="Button11" runat="server" Text="DB-DeleteALL" BackColor="Red" ForeColor="#FFFFCC" ToolTip="CAUTION!!" OnClientClick="return confirm('sure as HELL?');" />&nbsp;
     <asp:Button ID="Button3" runat="server" Text="Append" AccessKey="A" ToolTip="A(ppend)" />&nbsp;
     <asp:Button ID="Button2" runat="server" Text="writ SCHED" AccessKey="S" ToolTip="(write)S(chedule)" />&nbsp;
     <asp:CheckBox
