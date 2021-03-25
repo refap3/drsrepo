@@ -209,7 +209,7 @@ Public Class Form1
 
             LogAndDebugMessage("AEX-ALL COMPLETE!")
             My.Application.DoEvents()
-
+            Application.Exit() ' and now focc off hard!
 
         End If
     End Sub
