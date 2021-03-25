@@ -158,7 +158,7 @@ Public Class Form1
 
             ToolStripStatusLabel1.Text = "AUTOEXEC runnn .."
             ' reparse THIS day 
-            ' and wait for web connectivity !
+            ' and wait for web connectivity !t
             Dim webConnect As Boolean = False
             Do
                 Try
@@ -174,11 +174,11 @@ Public Class Form1
                 End Try
             Loop Until webConnect
 
-            ToolStripStatusLabel1.Text = "Connected."
+            LogAndDebugMessage("AEX-Connected.")
 
             ' delete the old focc
             DELETEallWMrecordings_Click(sender, e)
-            ToolStripStatusLabel1.Text = "Deleted old stuff."
+            LogAndDebugMessage("AEX-Deleted old stuff.")
             My.Application.DoEvents()
 
             ' filter - go to day toggle append 
@@ -186,11 +186,11 @@ Public Class Form1
             DateTimePicker1.Value = Now ' today
             ToggleButton_Click(sender, e) ' toggle all 
             Record_Click(sender, e) ' record to DB 
-            ToolStripStatusLabel1.Text = "Day saved: " & DateTimePicker1.Value.Date
+            LogAndDebugMessage("AEX-Day saved: " & DateTimePicker1.Value.Date)
             My.Application.DoEvents()
             'do a save schedule here too in case of crash
             INITRecord_Click(sender, e) ' write schedule 
-            ToolStripStatusLabel1.Text = "First SCHEDULE WRITTEN." & DateTimePicker1.Value.Date
+            LogAndDebugMessage("AEX-First SCHEDULE WRITTEN." & DateTimePicker1.Value.Date)
             My.Application.DoEvents()
             ' now process next days ...
             For i As Integer = 1 To My.Settings.DaysAheadInAutoExec - 1
@@ -198,20 +198,26 @@ Public Class Form1
                 NextDay_Click(sender, e)  ' next day 
                 ToggleButton_Click(sender, e) ' toggle all 
                 Record_Click(sender, e) ' record to DB 
-                ToolStripStatusLabel1.Text = "Day saved: " & DateTimePicker1.Value.Date
+                LogAndDebugMessage("AEX-Day saved: " & DateTimePicker1.Value.Date)
                 My.Application.DoEvents()
                 ' wite schedule in between 
                 INITRecord_Click(sender, e) ' write schedule 
-                ToolStripStatusLabel1.Text = "SCHEDULE WRITTEN." & DateTimePicker1.Value.Date
+                LogAndDebugMessage("AEX-SCHEDULE WRITTEN." & DateTimePicker1.Value.Date)
                 My.Application.DoEvents()
 
             Next
 
-            ToolStripStatusLabel1.Text = "ALL COMPLETE!"
+            LogAndDebugMessage("AEX-ALL COMPLETE!")
             My.Application.DoEvents()
 
 
         End If
+    End Sub
+
+    Private Sub LogAndDebugMessage(v As String)
+        Debug.WriteLine(v)
+        ToolStripStatusLabel1.Text = v
+
     End Sub
 
     Private Sub DELETEallWMrecordings_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button13.Click
