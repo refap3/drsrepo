@@ -8,8 +8,7 @@
 
     <div>
         <h4>
-            NOTE: cannot edit EndTime (calced!)
-        Always rewrite schedule file after updates! do it: <a href="DisplayOE1.aspx">here</a></h4>
+            Rewrite schedule file after updates! do it: <a href="DisplayOE1.aspx">here</a></h4>
         <a href="DisplayOE1.aspx"></a>
         <br />
         <br />
