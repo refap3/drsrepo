@@ -1,6 +1,6 @@
 # WM recorder in powershell ...
 #
-$BuildNumber=1.44
+$BuildNumber=1.51
 # Setup adjust recording time range ...
 # Grace: accept if record start is before now - grace
 # Before: Begin recording after before seconds, ie. 5: 5 secs later 
@@ -28,6 +28,28 @@ $WinAPI = @"
 
 Add-Type $WinAPI -Language CSharp
 
+$code = 
+{
+    # submit the host process RawUI interface and the execution context
+    param($RawUi)
+
+    do
+    {
+        # compose the time and date display
+        $time = Get-Date -Format 'HH:mm:ss'
+        # compose the title bar text
+        $title = "$time" 
+        # output the information to the title bar of the host process
+        $RawUI.WindowTitle = $title
+        # wait a half second
+        Start-Sleep -Milliseconds 500
+    } while ($true)
+}
+$ps = [PowerShell]::Create()
+$null = $ps.AddScript($code).AddArgument($host.UI.RawUI)
+$handle = $ps.BeginInvoke()
+
+
 
 function Write-DbgView ($s)
 {
@@ -42,7 +64,7 @@ function echo_debug ($s)
 
 function echo_console($s)
 {
-	echo $s
+  echo $s
 }
 
 # cleanup from possible previous crash ....
@@ -90,9 +112,9 @@ Try
         sleep ((($nextRec.EndTime) - (get-date)).totalseconds + $secondsAfterUsed) # sleep until end time 
       
         ps $BrowserName -ErrorAction SilentlyContinue|kill -ErrorAction SilentlyContinue
-		    # calc sleep time untile mp3 file appears to avoid race condition 
-		    $sleepTime = (3 + ($nextRec.Length/1000)) -as [int] 
-		    echo_debug "2. wait $sleepTime secs. for MediaFile to appear"
+        # calc sleep time untile mp3 file appears to avoid race condition 
+        $sleepTime = (3 + ($nextRec.Length/1000)) -as [int] 
+        echo_debug "2. wait $sleepTime secs. for MediaFile to appear"
         sleep $sleepTime	
 
         # rename and process DateTime Attributes on out file
