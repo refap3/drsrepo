@@ -27,7 +27,7 @@ Public Class Form1
         ' use this to watch for renamed Media files ... trigger archive from here 
         Dim p = Path.GetExtension(e.FullPath).ToLower
         If (p = mediaFILEEXTENSION) Then
-            addListBoxInfo("media file changed detected for: " & e.FullPath)
+            addListBoxInfo("media file CHANGE detected for: " & e.FullPath)
             ' and call archive thread
             If Not IsNothing(t) Then
                 t.Abort()
@@ -134,7 +134,7 @@ Public Class Form1
 
     Sub ActionARCHIVE()
         addListBoxInfo("Archive Thread Start ")
-        Threading.Thread.Sleep(2000)
+        Threading.Thread.Sleep(15000) ' wait MUCH longer here 
         tmrArchive_Tick(Nothing, Nothing)
         addListBoxInfo("Archive Thread DONE ")
     End Sub

@@ -1,3 +1,33 @@
+1.4.21
+--------------------------
+
+strange problem since today: mp3 file moved too early: 
+
+Pattern 1: moved away BEFORE rename
+
+13:00:05	[1852] 1. Until: 13:55 - Stadt_ Land_ Verdruss  with slack: 30
+13:55:29	[1852] 2. wait 6 secs. for MediaFile to appear
+13:55:31          media file change detected
+                  archive thread start 
+      :33         try moved
+13:55:34	[3016] 4. Moved: \\es\T$\tempWMrecordaCLONE\2021\04\01-1300-Disk Writer - 1 Apr 13_00.mp3 
+13:55:35	[3016] Something went WRONG  - Updated 0 rows. 
+13:55:35	[1852] ERR: No output mp3 file found ... !
+13:55:35	[1852] 3. Done: Stadt_ Land_ Verdruss 
+
+
+Pattern 2:moved away DURING RENAME TRY
+
+09:05:05	[1852] 1. Until: 09:30 - Weltmacht China  with slack: 0
+09:30:00	[1852] 2. wait 4 secs. for MediaFile to appear
+09:30:04	[1852] Bloody exception with C:\drs\WMrecorder.ps1 resulted in  Exception setting "CreationTime": "The process cannot access the file 'C:\temp\Disk Writer - 1 Apr 09_05.mp3' because it is being used by another process."
+09:30:05	[3016] 4. Moved: \\es\T$\tempWMrecordaCLONE\2021\04\01-0905-Disk Writer - 1 Apr 09_05.mp3 
+09:30:05	[3016] Something went WRONG  - Updated 0 rows. 
+
+
+
+--> i now wait around 15 secs BEFORE try move ...
+
 5.3.21
 --------------------
 
